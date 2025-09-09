@@ -37,8 +37,8 @@ export function TopNavbar({ breadcrumbs = [] }: TopNavbarProps) {
   };
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/60">
-      <div className="flex h-16 items-center gap-4 px-4 lg:px-6">
+    <header className="sticky top-0 z-40 w-full border-b border-border/40 glass-panel shadow-[var(--shadow-soft)]">
+      <div className="flex h-18 items-center gap-6 px-6 lg:px-8">
         {/* Mobile Menu & Sidebar Trigger */}
         <div className="flex items-center gap-2">
           <SidebarTrigger className="lg:hidden" />
@@ -71,11 +71,11 @@ export function TopNavbar({ breadcrumbs = [] }: TopNavbarProps) {
         {/* Global Search */}
         <form onSubmit={handleSearch} className="hidden lg:block">
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+            <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground/70" />
             <Input
               type="search"
               placeholder="Cari berita, galeri, struktur... (⌘K)"
-              className="w-[300px] pl-9 focus-ring"
+              className="w-[350px] h-11 pl-11 pr-4 bg-background/50 border-border/40 rounded-2xl focus-ring backdrop-blur-sm shadow-[var(--shadow-soft)] smooth-transition focus:shadow-[var(--shadow-medium)] focus:bg-background/80"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -86,7 +86,7 @@ export function TopNavbar({ breadcrumbs = [] }: TopNavbarProps) {
         <Button
           variant="ghost"
           size="icon"
-          className="lg:hidden focus-ring"
+          className="lg:hidden focus-ring h-11 w-11 rounded-2xl hover:bg-accent/10 smooth-transition"
           onClick={() => {
             // TODO: Open search modal on mobile
           }}
@@ -98,10 +98,10 @@ export function TopNavbar({ breadcrumbs = [] }: TopNavbarProps) {
         {/* Notifications */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" size="icon" className="relative focus-ring">
+            <Button variant="ghost" size="icon" className="relative focus-ring h-11 w-11 rounded-2xl hover:bg-accent/10 smooth-transition floating-element">
               <Bell className="h-5 w-5" />
               <Badge 
-                className="absolute -top-1 -right-1 h-5 w-5 p-0 text-xs bg-accent text-accent-foreground"
+                className="absolute -top-1 -right-1 h-5 w-5 p-0 text-xs bg-gradient-to-r from-accent to-accent/90 text-accent-foreground shadow-[var(--shadow-glow)] border-0 animate-pulse"
                 variant="secondary"
               >
                 3
@@ -109,7 +109,7 @@ export function TopNavbar({ breadcrumbs = [] }: TopNavbarProps) {
               <span className="sr-only">Notifications</span>
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="w-80">
+          <DropdownMenuContent align="end" className="w-80 glass-panel border-border/40 shadow-[var(--shadow-large)]">
             <DropdownMenuLabel>Notifikasi</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <div className="space-y-1">
@@ -140,21 +140,21 @@ export function TopNavbar({ breadcrumbs = [] }: TopNavbarProps) {
         {/* User Menu */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-9 w-auto px-2 focus-ring">
-              <Avatar className="h-7 w-7">
+            <Button variant="ghost" className="h-12 w-auto px-3 focus-ring rounded-2xl hover:bg-accent/10 smooth-transition floating-element">
+              <Avatar className="h-9 w-9 ring-2 ring-accent/20 ring-offset-2 ring-offset-background">
                 <AvatarImage src="/placeholder-avatar.jpg" />
-                <AvatarFallback className="bg-primary text-primary-foreground">
+                <AvatarFallback className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground font-semibold">
                   AD
                 </AvatarFallback>
               </Avatar>
-              <div className="hidden md:flex flex-col items-start ml-2">
-                <span className="text-sm font-medium">Admin User</span>
-                <span className="text-xs text-muted-foreground">Super Admin</span>
+              <div className="hidden md:flex flex-col items-start ml-3">
+                <span className="text-sm font-semibold text-foreground">Admin User</span>
+                <span className="text-xs text-muted-foreground font-medium">Super Admin</span>
               </div>
-              <ChevronDown className="h-4 w-4 ml-2" />
+              <ChevronDown className="h-4 w-4 ml-2 smooth-transition" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="w-56">
+          <DropdownMenuContent align="end" className="w-64 glass-panel border-border/40 shadow-[var(--shadow-large)]">
             <DropdownMenuLabel className="font-normal">
               <div className="flex flex-col space-y-1">
                 <p className="text-sm font-medium leading-none">Admin User</p>

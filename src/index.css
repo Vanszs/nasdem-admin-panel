@@ -11,9 +11,22 @@ All colors MUST be HSL.
     /* Brand Colors - NasDem Sidoarjo */  
     --color-primary: 218 100% 17%;        /* #001B55 - Biru Tua */
     --color-accent: 33 100% 51%;          /* #FF9C04 - Kuning Jingga */
-    --color-bg: 0 0% 94%;                 /* #F0F0F0 - Abu Muda */
+    --color-bg: 0 0% 97%;                 /* #F7F7F7 - Abu Sangat Muda */
     --color-surface: 0 0% 100%;           /* #FFFFFF - Putih */
     --color-danger: 0 75% 45%;            /* #C81E1E - Merah Tua */
+    
+    /* Modern Gradients & Effects */
+    --gradient-primary: linear-gradient(135deg, hsl(218 100% 17%) 0%, hsl(218 80% 25%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(33 100% 51%) 0%, hsl(38 95% 55%) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(220 20% 98%) 100%);
+    --glass-bg: hsla(0 0% 100% / 0.8);
+    --glass-border: hsla(220 20% 80% / 0.3);
+    
+    /* Enhanced Shadows */
+    --shadow-soft: 0 2px 8px -2px hsl(220 20% 20% / 0.08);
+    --shadow-medium: 0 4px 16px -4px hsl(220 20% 20% / 0.12);
+    --shadow-large: 0 8px 32px -8px hsl(220 20% 20% / 0.16);
+    --shadow-glow: 0 0 20px hsl(var(--accent) / 0.15);
     
     /* Semantic Design System */
     --background: var(--color-bg);
@@ -28,11 +41,11 @@ All colors MUST be HSL.
     --primary: var(--color-primary);
     --primary-foreground: 0 0% 100%;
     
-    --secondary: 218 15% 92%;
+    --secondary: 218 8% 95%;
     --secondary-foreground: var(--color-primary);
     
-    --muted: 220 5% 88%;
-    --muted-foreground: 220 5% 45%;
+    --muted: 220 8% 92%;
+    --muted-foreground: 220 8% 45%;
     
     --accent: var(--color-accent);
     --accent-foreground: 0 0% 100%;
@@ -49,27 +62,21 @@ All colors MUST be HSL.
     --info: 213 94% 68%;
     --info-foreground: 0 0% 100%;
     
-    --border: 220 8% 90%;
-    --input: 220 8% 90%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
     --ring: var(--color-accent);
     
     --radius: 1rem;
 
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
+    /* Enhanced Sidebar Design */
+    --sidebar-background: var(--gradient-primary);
+    --sidebar-foreground: 0 0% 90%;
+    --sidebar-primary: 218 100% 25%;
     --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: hsla(33 100% 51% / 0.15);
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: hsla(0 0% 100% / 0.1);
+    --sidebar-ring: var(--color-accent);
   }
 
   .dark {
@@ -114,35 +121,63 @@ All colors MUST be HSL.
 }
 
 @layer components {
-  /* Smooth transitions for all interactive elements */
+  /* Enhanced transitions */
   .smooth-transition {
-    @apply transition-all duration-200 ease-in-out;
+    @apply transition-all duration-300 ease-out;
   }
   
-  /* Admin layout utilities */
+  .ultra-smooth {
+    @apply transition-all duration-500 cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  
+  /* Modern cards with glass effect */
   .admin-card {
-    @apply bg-card border border-border rounded-2xl shadow-sm;
+    @apply bg-card/80 backdrop-blur-sm border border-border/60 rounded-3xl shadow-[var(--shadow-medium)];
   }
   
   .admin-surface {
-    @apply bg-surface border border-border;
+    @apply bg-gradient-to-br from-surface via-surface to-surface/95 border border-border/40 shadow-[var(--shadow-soft)];
   }
   
-  /* Status indicators */
+  /* Glass morphism effects */
+  .glass-panel {
+    @apply bg-[var(--glass-bg)] backdrop-blur-xl border border-[var(--glass-border)] rounded-3xl shadow-[var(--shadow-medium)];
+  }
+  
+  /* Enhanced status indicators with gradients */
   .status-draft {
-    @apply bg-muted text-muted-foreground;
+    @apply bg-gradient-to-r from-muted to-muted/80 text-muted-foreground border border-muted/20;
   }
   
   .status-published {
-    @apply bg-success text-success-foreground;
+    @apply bg-gradient-to-r from-success to-success/90 text-success-foreground shadow-[0_0_20px_hsl(var(--success)/0.2)];
   }
   
   .status-scheduled {
-    @apply bg-info text-info-foreground; 
+    @apply bg-gradient-to-r from-info to-info/90 text-info-foreground shadow-[0_0_20px_hsl(var(--info)/0.2)];
   }
   
   .status-archived {
-    @apply bg-warning text-warning-foreground;
+    @apply bg-gradient-to-r from-warning to-warning/90 text-warning-foreground shadow-[0_0_20px_hsl(var(--warning)/0.2)];
+  }
+  
+  /* Sidebar specific styles */
+  .sidebar-nav-item {
+    @apply relative overflow-hidden rounded-2xl transition-all duration-300 ease-out;
+  }
+  
+  .sidebar-nav-item::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-accent/0 via-accent/10 to-accent/0 opacity-0 transition-opacity duration-300;
+  }
+  
+  .sidebar-nav-item:hover::before {
+    @apply opacity-100;
+  }
+  
+  /* Floating elements */
+  .floating-element {
+    @apply transform-gpu transition-transform duration-300 ease-out hover:scale-105 hover:-translate-y-1;
   }
 }
 
