@@ -15,7 +15,6 @@ import {
   FileText,
   Plus
 } from "lucide-react";
-import { Link } from "react-router-dom";
 import {
   Table,
   TableBody,
@@ -24,6 +23,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { SafeLink } from "@/components/layout/SafeLink";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -252,12 +252,12 @@ export function NewsTable() {
                 </TableCell>
                 <TableCell>
                   <div className="space-y-1">
-                    <Link 
+                    <SafeLink 
                       to={`/news/${newsItem.id}`}
                       className="font-medium hover:text-accent smooth-transition"
                     >
                       {newsItem.title}
-                    </Link>
+                    </SafeLink>
                     {newsItem.summary && (
                       <p className="text-sm text-muted-foreground line-clamp-2">
                         {newsItem.summary}
@@ -339,10 +339,10 @@ export function NewsTable() {
                       <DropdownMenuLabel>Aksi</DropdownMenuLabel>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem asChild>
-                        <Link to={`/news/${newsItem.id}/edit`}>
+                        <SafeLink to={`/news/${newsItem.id}/edit`}>
                           <Edit className="mr-2 h-4 w-4" />
                           Edit
-                        </Link>
+                        </SafeLink>
                       </DropdownMenuItem>
                       <DropdownMenuItem>
                         <Copy className="mr-2 h-4 w-4" />
@@ -376,12 +376,12 @@ export function NewsTable() {
               }
             </p>
             {!searchTerm && statusFilter === "all" && (
-              <Link to="/news/create">
+              <SafeLink to="/news/create">
                 <Button className="mt-4 bg-brand-accent">
                   <Plus className="mr-2 h-4 w-4" />
                   Tulis Berita Pertama
                 </Button>
-              </Link>
+              </SafeLink>
             )}
           </div>
         )}

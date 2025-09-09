@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import {
   LayoutDashboard,
   FileText,
@@ -35,6 +35,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
+import { SafeNavLink } from "./SafeNavLink";
 
 const menuItems = [
   {
@@ -87,9 +88,16 @@ const menuItems = [
 
 export function AppSidebar() {
   const { state } = useSidebar();
-  const location = useLocation();
-  const currentPath = location.pathname;
   const [openGroups, setOpenGroups] = useState<string[]>(["Struktur"]);
+  
+  // Safely get location, fallback if not in router context
+  let currentPath = "/";
+  try {
+    const location = useLocation();
+    currentPath = location.pathname;
+  } catch {
+    // Not in router context, use default
+  }
 
   const isActive = (path: string) => currentPath === path;
   const isGroupActive = (subItems?: { url: string }[]) => 
@@ -163,7 +171,7 @@ export function AppSidebar() {
                             {item.subItems?.map((subItem) => (
                               <SidebarMenuSubItem key={subItem.url}>
                                 <SidebarMenuSubButton asChild>
-                                  <NavLink
+                                  <SafeNavLink
                                     to={subItem.url}
                                     className={({ isActive }) =>
                                       `flex items-center gap-2 smooth-transition ${
@@ -175,7 +183,7 @@ export function AppSidebar() {
                                   >
                                     <subItem.icon className="h-3 w-3" />
                                     <span className="text-sm">{subItem.title}</span>
-                                  </NavLink>
+                                  </SafeNavLink>
                                 </SidebarMenuSubButton>
                               </SidebarMenuSubItem>
                             ))}
@@ -185,7 +193,7 @@ export function AppSidebar() {
                     </Collapsible>
                   ) : (
                     <SidebarMenuButton asChild>
-                      <NavLink
+                      <SafeNavLink
                         to={item.url}
                         className={({ isActive }) =>
                           `flex items-center gap-3 smooth-transition ${getNavClassName({ isActive })}`
@@ -193,7 +201,7 @@ export function AppSidebar() {
                       >
                         <item.icon className="h-4 w-4" />
                         {state === "expanded" && <span>{item.title}</span>}
-                      </NavLink>
+                      </SafeNavLink>
                     </SidebarMenuButton>
                   )}
                 </SidebarMenuItem>

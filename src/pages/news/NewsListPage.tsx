@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
 import { Plus } from "lucide-react";
 import { AdminLayout } from "@/components/layout/AdminLayout";
 import { Button } from "@/components/ui/button";
 import { NewsTable } from "@/components/news/NewsTable";
+import { SafeLink } from "@/components/layout/SafeLink";
 
 export function NewsListPage() {
   const breadcrumbs = [
@@ -20,12 +20,12 @@ export function NewsListPage() {
               Buat, edit, dan kelola artikel untuk publikasi website.
             </p>
           </div>
-          <Link to="/news/create">
+          <SafeLink to="/news/create">
             <Button className="bg-brand-accent focus-ring">
               <Plus className="mr-2 h-4 w-4" />
               Tulis Berita Baru
             </Button>
-          </Link>
+          </SafeLink>
         </div>
         
         <NewsTable />

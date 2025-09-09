@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
 import { Plus, FileText, Image, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { SafeLink } from "@/components/layout/SafeLink";
 
 const quickActions = [
   {
@@ -35,7 +35,7 @@ export function QuickActions() {
       </CardHeader>
       <CardContent className="space-y-3">
         {quickActions.map((action) => (
-          <Link key={action.title} to={action.href}>
+          <SafeLink key={action.title} to={action.href}>
             <Button
               variant="ghost" 
               className="w-full justify-start h-auto p-3 smooth-transition hover:bg-muted/50 focus-ring"
@@ -48,7 +48,7 @@ export function QuickActions() {
                 <div className="text-xs text-muted-foreground">{action.description}</div>
               </div>
             </Button>
-          </Link>
+          </SafeLink>
         ))}
       </CardContent>
     </Card>
