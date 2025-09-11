@@ -14,7 +14,7 @@ All colors MUST be HSL.
     /* Brand Colors - NasDem Sidoarjo */  
     --color-primary: 218 100% 17%;        /* #001B55 - Biru Tua */
     --color-accent: 33 100% 51%;          /* #FF9C04 - Kuning Jingga */
-    --color-bg: 0 0% 94%;                 /* #F0F0F0 - Abu Muda */
+    --color-bg: 0 0% 97%;                 /* #F7F7F7 - Abu Sangat Muda */
     --color-surface: 0 0% 100%;           /* #FFFFFF - Putih */
     --color-danger: 0 75% 45%;            /* #C81E1E - Merah Tua */
     
@@ -115,97 +115,58 @@ All colors MUST be HSL.
 
 @layer base {
   * {
-    border-color: hsl(var(--border));
+    @apply border-border;
   }
 
   body {
-    background-color: hsl(var(--background));
-    color: hsl(var(--foreground));
-    font-family: system-ui, -apple-system, sans-serif;
+    @apply bg-background text-foreground font-sans;
   }
 }
 
 @layer components {
   /* Enhanced transitions */
   .smooth-transition {
-    transition: all 0.3s ease-out;
+    @apply transition-all duration-300 ease-out;
   }
   
   .ultra-smooth {
-    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    @apply transition-all duration-500 cubic-bezier(0.16, 1, 0.3, 1);
   }
   
   /* Modern cards with glass effect */
   .admin-card {
-    background-color: hsl(var(--card) / 0.8);
-    backdrop-filter: blur(8px);
-    border: 1px solid hsl(var(--border) / 0.6);
-    border-radius: 1.5rem;
-    box-shadow: var(--shadow-medium);
+    @apply bg-card/80 backdrop-blur-sm border border-border/60 rounded-3xl shadow-[var(--shadow-medium)];
   }
   
   .admin-surface {
-    background: linear-gradient(135deg, 
-      hsl(var(--card)) 0%, 
-      hsl(var(--card)) 50%, 
-      hsl(var(--card) / 0.95) 100%
-    );
-    border: 1px solid hsl(var(--border) / 0.4);
-    box-shadow: var(--shadow-soft);
+    @apply bg-gradient-to-br from-surface via-surface to-surface/95 border border-border/40 shadow-[var(--shadow-soft)];
   }
   
   /* Glass morphism effects */
   .glass-panel {
-    background: var(--glass-bg);
-    backdrop-filter: blur(24px);
-    border: 1px solid var(--glass-border);
-    border-radius: 1.5rem;
-    box-shadow: var(--shadow-medium);
+    @apply bg-[var(--glass-bg)] backdrop-blur-xl border border-[var(--glass-border)] rounded-3xl shadow-[var(--shadow-medium)];
   }
   
   /* Enhanced status indicators with gradients */
   .status-draft {
-    background: linear-gradient(90deg, 
-      hsl(var(--muted)) 0%, 
-      hsl(var(--muted) / 0.8) 100%
-    );
-    color: hsl(var(--muted-foreground));
-    border: 1px solid hsl(var(--muted) / 0.2);
+    @apply bg-gradient-to-r from-muted to-muted/80 text-muted-foreground border border-muted/20;
   }
   
   .status-published {
-    background: linear-gradient(90deg, 
-      hsl(var(--success)) 0%, 
-      hsl(var(--success) / 0.9) 100%
-    );
-    color: hsl(var(--success-foreground));
-    box-shadow: 0 0 20px hsl(var(--success) / 0.2);
+    @apply bg-gradient-to-r from-success to-success/90 text-success-foreground shadow-[0_0_20px_hsl(var(--success)/0.2)];
   }
   
   .status-scheduled {
-    background: linear-gradient(90deg, 
-      hsl(var(--info)) 0%, 
-      hsl(var(--info) / 0.9) 100%
-    );
-    color: hsl(var(--info-foreground));
-    box-shadow: 0 0 20px hsl(var(--info) / 0.2);
+    @apply bg-gradient-to-r from-info to-info/90 text-info-foreground shadow-[0_0_20px_hsl(var(--info)/0.2)];
   }
   
   .status-archived {
-    background: linear-gradient(90deg, 
-      hsl(var(--warning)) 0%, 
-      hsl(var(--warning) / 0.9) 100%
-    );
-    color: hsl(var(--warning-foreground));
-    box-shadow: 0 0 20px hsl(var(--warning) / 0.2);
+    @apply bg-gradient-to-r from-warning to-warning/90 text-warning-foreground shadow-[0_0_20px_hsl(var(--warning)/0.2)];
   }
   
   /* Sidebar specific styles */
   .sidebar-nav-item {
-    position: relative;
-    overflow: hidden;
-    border-radius: 1rem;
-    transition: all 0.3s ease-out;
+    @apply relative overflow-hidden rounded-2xl transition-all duration-300 ease-out;
   }
   
   .sidebar-nav-item::before {

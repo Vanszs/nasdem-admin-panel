@@ -6,7 +6,6 @@ import {
   Image,
   Users,
   Home,
-  UserCheck,
   Activity,
   Settings,
   ChevronDown,
@@ -68,11 +67,6 @@ const menuItems = [
     title: "Landing Page",
     url: "/landing",
     icon: Home,
-  },
-  {
-    title: "Users & Roles", 
-    url: "/users",
-    icon: UserCheck,
   },
   {
     title: "Audit Log",
