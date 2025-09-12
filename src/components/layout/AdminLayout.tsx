@@ -48,7 +48,7 @@ export function AdminLayout({ children, breadcrumbs }: AdminLayoutProps) {
             }} />
           </div>
           
-          <div className="relative p-6">
+          <div className="relative p-6 min-h-screen bg-gradient-to-br from-white/80 via-gray-50/30 to-white/60 backdrop-blur-sm border border-gray-200/60 rounded-2xl m-4 shadow-sm">
             {children}
           </div>
         </main>

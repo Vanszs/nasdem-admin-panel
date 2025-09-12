@@ -12,23 +12,29 @@ export function NewsListPage() {
 
   return (
     <AdminLayout breadcrumbs={breadcrumbs}>
-      <div className="p-6 space-y-6">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold">Kelola Berita</h1>
-            <p className="text-muted-foreground">
-              Buat, edit, dan kelola artikel untuk publikasi website.
-            </p>
+      <div className="space-y-6">
+        {/* Header Section with Border */}
+        <div className="bg-white/70 backdrop-blur-sm border-2 border-gray-200/80 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300">
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-2xl font-bold">Kelola Berita</h1>
+              <p className="text-muted-foreground">
+                Buat, edit, dan kelola artikel untuk publikasi website.
+              </p>
+            </div>
+            <SafeLink to="/news/create">
+              <Button className="bg-brand-accent border-2 border-brand-accent/20 hover:border-brand-accent/40 focus-ring transition-all duration-300">
+                <Plus className="mr-2 h-4 w-4" />
+                Tulis Berita Baru
+              </Button>
+            </SafeLink>
           </div>
-          <SafeLink to="/news/create">
-            <Button className="bg-brand-accent focus-ring">
-              <Plus className="mr-2 h-4 w-4" />
-              Tulis Berita Baru
-            </Button>
-          </SafeLink>
         </div>
         
-        <NewsTable />
+        {/* News Table Section with Border */}
+        <div className="bg-white/80 backdrop-blur-sm border-2 border-gray-200/80 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
+          <NewsTable />
+        </div>
       </div>
     </AdminLayout>
   );

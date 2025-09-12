@@ -135,13 +135,20 @@ All colors MUST be HSL.
     transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   }
   
-  /* Modern cards with glass effect */
+  /* Modern cards with enhanced glass effect and visible borders */
   .admin-card {
-    background-color: hsl(var(--card) / 0.8);
-    backdrop-filter: blur(8px);
-    border: 1px solid hsl(var(--border) / 0.6);
+    background-color: hsl(var(--card) / 0.85);
+    backdrop-filter: blur(12px);
+    border: 2px solid hsl(var(--border) / 0.8);
     border-radius: 1.5rem;
     box-shadow: var(--shadow-medium);
+    transition: all 0.3s ease-out;
+  }
+  
+  .admin-card:hover {
+    border: 2px solid hsl(var(--border) / 0.9);
+    box-shadow: var(--shadow-large);
+    transform: translateY(-2px);
   }
   
   .admin-surface {

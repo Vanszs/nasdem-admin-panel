@@ -190,34 +190,36 @@ export function NewsTable() {
   };
 
   return (
-    <div className="space-y-4">
-      {/* Filters */}
-      <div className="flex flex-col sm:flex-row gap-4">
-        <div className="flex-1">
-          <Input
-            placeholder="Cari berita atau penulis..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="focus-ring"
-          />
-        </div>
-        <Select value={statusFilter} onValueChange={setStatusFilter}>
-          <SelectTrigger className="w-full sm:w-[180px] focus-ring">
-            <Filter className="h-4 w-4 mr-2" />
-            <SelectValue placeholder="Filter status" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">Semua Status</SelectItem>
+    <div className="space-y-6 p-6">
+      {/* Filters Section with Border */}
+      <div className="bg-white/50 border-2 border-gray-200/60 rounded-xl p-4">
+        <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex-1">
+            <Input
+              placeholder="Cari berita atau penulis..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="focus-ring border-2 border-gray-200/60 hover:border-gray-300/80"
+            />
+          </div>
+          <Select value={statusFilter} onValueChange={setStatusFilter}>
+            <SelectTrigger className="w-full sm:w-[180px] focus-ring border-2 border-gray-200/60 hover:border-gray-300/80">
+              <Filter className="h-4 w-4 mr-2" />
+              <SelectValue placeholder="Filter status" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">Semua Status</SelectItem>
             <SelectItem value="DRAFT">Draft</SelectItem>
             <SelectItem value="SCHEDULED">Terjadwal</SelectItem>
             <SelectItem value="PUBLISHED">Published</SelectItem>
             <SelectItem value="ARCHIVED">Diarsip</SelectItem>
           </SelectContent>
         </Select>
+        </div>
       </div>
 
-      {/* Table */}
-      <div className="admin-card overflow-hidden">
+      {/* Table Section with Border */}
+      <div className="bg-white/80 border-2 border-gray-200/60 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
         <Table>
           <TableHeader>
             <TableRow>
