@@ -23,7 +23,7 @@ const Index = () => {
 
   return (
     <AdminLayout breadcrumbs={breadcrumbs}>
-      <div className="p-6 space-y-6 max-w-7xl mx-auto">
+      <div className="p-6 space-y-6">
         {/* Modern Hero Section with Glassmorphism */}
         <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary via-primary/90 to-accent text-white shadow-2xl">
           {/* Background Pattern */}
