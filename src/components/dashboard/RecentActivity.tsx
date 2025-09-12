@@ -1,9 +1,10 @@
 import { formatDistanceToNow } from "date-fns";
 import { id } from "date-fns/locale";
-import { FileText, Image, Users, Pin, Archive } from "lucide-react";
+import { FileText, Image, Users, Pin, Archive, Clock, CheckCircle, AlertCircle } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { cn } from "@/lib/utils";
 
 interface ActivityItem {
   id: string;
@@ -12,6 +13,7 @@ interface ActivityItem {
   title: string;
   user: string;
   timestamp: Date;
+  priority?: "high" | "medium" | "low";
 }
 
 // Mock data
@@ -23,6 +25,7 @@ const activities: ActivityItem[] = [
     title: "Program Pembangunan Infrastruktur Sidoarjo 2024",
     user: "Admin User",
     timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000), // 2 hours ago
+    priority: "high"
   },
   {
     id: "2", 
@@ -31,22 +34,34 @@ const activities: ActivityItem[] = [
     title: "Rapat Koordinasi DPD Partai NasDem",
     user: "Editor User",
     timestamp: new Date(Date.now() - 4 * 60 * 60 * 1000), // 4 hours ago
+    priority: "medium"
   },
   {
     id: "3",
     type: "gallery",
     action: "created",
-    title: "Foto Kegiatan Sosialisasi Program",
+    title: "Foto Kegiatan Sosialisasi Program Unggulan",
     user: "Media Officer",
     timestamp: new Date(Date.now() - 6 * 60 * 60 * 1000), // 6 hours ago
+    priority: "low"
   },
   {
     id: "4",
     type: "structure",
     action: "updated", 
-    title: "Data Pengurus DPD Sidoarjo",
+    title: "Data Pengurus DPD Sidoarjo Terbaru 2024",
     user: "Admin User",
     timestamp: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000), // 1 day ago
+    priority: "medium"
+  },
+  {
+    id: "5",
+    type: "news",
+    action: "created",
+    title: "Draft: Evaluasi Program Kerja Semester I",
+    user: "Content Writer",
+    timestamp: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000), // 2 days ago
+    priority: "low"
   },
 ];
 
@@ -62,73 +77,159 @@ const getActivityIcon = (type: ActivityItem["type"], action: ActivityItem["actio
   }
 };
 
-const getActivityColor = (action: ActivityItem["action"]) => {
-  switch (action) {
-    case "published": return "bg-success/10 text-success";
-    case "pinned": return "bg-accent/10 text-accent";
-    case "archived": return "bg-warning/10 text-warning";
-    case "created": return "bg-info/10 text-info";
-    case "updated": return "bg-primary/10 text-primary";
-    default: return "bg-muted/10 text-muted-foreground";
-  }
+const getActivityConfig = (action: ActivityItem["action"], priority?: string) => {
+  const configs = {
+    published: { 
+      bg: "from-green-500/10 to-green-500/5", 
+      text: "text-green-700", 
+      icon: CheckCircle,
+      label: "Dipublikasi"
+    },
+    pinned: { 
+      bg: "from-accent/10 to-accent/5", 
+      text: "text-accent", 
+      icon: Pin,
+      label: "Di-pin"
+    },
+    archived: { 
+      bg: "from-yellow-500/10 to-yellow-500/5", 
+      text: "text-yellow-700", 
+      icon: Archive,
+      label: "Diarsip"
+    },
+    created: { 
+      bg: "from-blue-500/10 to-blue-500/5", 
+      text: "text-blue-700", 
+      icon: Clock,
+      label: "Dibuat"
+    },
+    updated: { 
+      bg: "from-primary/10 to-primary/5", 
+      text: "text-primary", 
+      icon: AlertCircle,
+      label: "Diperbarui"
+    },
+  };
+  
+  return configs[action] || {
+    bg: "from-gray-500/10 to-gray-500/5", 
+    text: "text-gray-600",
+    icon: Clock,
+    label: action
+  };
 };
 
-const getActionLabel = (action: ActivityItem["action"]) => {
-  switch (action) {
-    case "created": return "dibuat";
-    case "published": return "dipublikasi";
-    case "pinned": return "di-pin";
-    case "unpinned": return "unpin";
-    case "archived": return "diarsip";
-    case "updated": return "diperbarui";
-    default: return action;
+const getPriorityIndicator = (priority?: string) => {
+  switch (priority) {
+    case "high": return "bg-red-500";
+    case "medium": return "bg-yellow-500";
+    case "low": return "bg-green-500";
+    default: return "bg-gray-400";
   }
 };
 
 export function RecentActivity() {
   return (
-    <Card className="admin-card">
-      <CardHeader>
-        <CardTitle className="text-lg font-semibold">Aktivitas Terbaru</CardTitle>
+    <Card className="group relative overflow-hidden border-0 shadow-sm hover:shadow-xl transition-all duration-500 bg-white/80 backdrop-blur-sm">
+      {/* Gradient Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
+      
+      <CardHeader className="relative pb-4">
+        <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
+          <div className="w-1 h-6 bg-gradient-to-b from-primary to-accent rounded-full" />
+          Aktivitas Terbaru
+        </CardTitle>
+        <p className="text-sm text-muted-foreground">Timeline perubahan dan update sistem</p>
       </CardHeader>
-      <CardContent className="space-y-4">
-        {activities.map((activity) => {
+      
+      <CardContent className="relative space-y-1">
+        {activities.map((activity, index) => {
           const Icon = getActivityIcon(activity.type, activity.action);
+          const config = getActivityConfig(activity.action, activity.priority);
           
           return (
-            <div key={activity.id} className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted/30 smooth-transition">
-              <div className={`p-2 rounded-lg ${getActivityColor(activity.action)}`}>
-                <Icon className="h-3 w-3" />
-              </div>
+            <div key={activity.id} className={cn(
+              "group/item relative overflow-hidden rounded-2xl p-4 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md cursor-pointer",
+              "bg-gradient-to-r from-white/50 via-white/30 to-white/50",
+              "border border-gray-200/50 hover:border-primary/20"
+            )}>
+              {/* Priority Indicator */}
+              <div className={cn(
+                "absolute left-0 top-0 bottom-0 w-1 rounded-r-full transition-all duration-300",
+                getPriorityIndicator(activity.priority),
+                "group-hover/item:w-1.5"
+              )} />
               
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 mb-1">
-                  <p className="text-sm font-medium truncate">{activity.title}</p>
-                  <Badge variant="secondary" className="text-xs">
-                    {getActionLabel(activity.action)}
-                  </Badge>
+              {/* Hover Effect Background */}
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-accent/5 opacity-0 group-hover/item:opacity-100 transition-opacity duration-300" />
+              
+              <div className="relative flex items-start gap-4">
+                {/* Icon with animated background */}
+                <div className={cn(
+                  "flex-shrink-0 p-3 rounded-2xl transition-all duration-300 group-hover/item:scale-110",
+                  "bg-gradient-to-br", config.bg,
+                  "shadow-sm group-hover/item:shadow-lg"
+                )}>
+                  <Icon className={cn("h-4 w-4 transition-colors duration-300", config.text)} />
                 </div>
                 
-                <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                  <Avatar className="h-4 w-4">
-                    <AvatarFallback className="text-[10px]">
-                      {activity.user.split(" ").map(n => n[0]).join("")}
-                    </AvatarFallback>
-                  </Avatar>
-                  <span>{activity.user}</span>
-                  <span>•</span>
-                  <span>
-                    {formatDistanceToNow(activity.timestamp, { 
-                      addSuffix: true, 
-                      locale: id 
-                    })}
-                  </span>
+                {/* Content */}
+                <div className="flex-1 min-w-0">
+                  {/* Title and Badge */}
+                  <div className="flex items-start justify-between gap-3 mb-2">
+                    <h4 className="font-semibold text-foreground group-hover/item:text-primary transition-colors duration-300 line-clamp-2 leading-5">
+                      {activity.title}
+                    </h4>
+                    <Badge 
+                      variant="secondary" 
+                      className={cn(
+                        "text-xs font-semibold border-0 shadow-sm flex-shrink-0 transition-all duration-300 group-hover/item:scale-105",
+                        config.bg.replace('/10', '/20').replace('/5', '/10'),
+                        config.text
+                      )}
+                    >
+                      {config.label}
+                    </Badge>
+                  </div>
+                  
+                  {/* User and Timestamp */}
+                  <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                    <Avatar className="h-5 w-5 ring-2 ring-white ring-offset-1 ring-offset-gray-100">
+                      <AvatarFallback className="text-[10px] font-semibold bg-gradient-to-br from-primary/20 to-accent/20 text-primary">
+                        {activity.user.split(" ").map(n => n[0]).join("").slice(0, 2)}
+                      </AvatarFallback>
+                    </Avatar>
+                    <span className="font-medium">{activity.user}</span>
+                    <span className="text-gray-400">•</span>
+                    <span className="flex items-center gap-1">
+                      <Clock className="h-3 w-3" />
+                      {formatDistanceToNow(activity.timestamp, { 
+                        addSuffix: true, 
+                        locale: id 
+                      })}
+                    </span>
+                  </div>
                 </div>
               </div>
+              
+              {/* Timeline connector */}
+              {index < activities.length - 1 && (
+                <div className="absolute left-7 -bottom-1 w-[2px] h-4 bg-gradient-to-b from-gray-200 to-transparent" />
+              )}
             </div>
           );
         })}
+        
+        {/* View All Button */}
+        <div className="pt-4 text-center">
+          <button className="text-sm text-primary hover:text-primary/80 font-medium transition-colors duration-300 hover:underline">
+            Lihat semua aktivitas →
+          </button>
+        </div>
       </CardContent>
+      
+      {/* Decorative Background Elements */}
+      <div className="absolute -top-8 -right-8 w-24 h-24 bg-gradient-to-br from-primary/10 to-accent/10 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-all duration-700" />
     </Card>
   );
 }

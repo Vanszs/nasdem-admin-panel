@@ -113,10 +113,9 @@ export function AppSidebar() {
   return (
     <Sidebar className="border-r-0 shadow-[var(--shadow-large)]" style={{ background: 'var(--sidebar-background)' }}>
       <SidebarContent className="overflow-hidden">
-        {/* Logo Section with Glass Effect */}
-        <div className="p-8 border-b border-sidebar-border/20 relative">
-          <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent" />
-          <div className="relative flex items-center gap-4">
+        {/* Logo Section */}
+        <div className="p-8 border-b border-sidebar-border/20">
+          <div className="flex items-center gap-4">
             <div className="w-12 h-12 bg-gradient-to-br from-accent to-accent/80 rounded-2xl flex items-center justify-center shadow-[var(--shadow-glow)] floating-element">
               <span className="text-accent-foreground font-bold text-lg">N</span>
             </div>
