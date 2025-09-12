@@ -200,7 +200,7 @@ export function ModernSidebar({ isCollapsed = false, onToggle }: ModernSidebarPr
                     onMouseLeave={() => setHoveredItem(null)}
                     className={`w-full group relative flex items-center gap-3 px-4 py-3 mx-3 rounded-2xl font-medium transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden ${
                       isGroupActive(item.subItems)
-                        ? "bg-gradient-to-r from-brand-accent via-brand-accent to-brand-accent/90 text-white shadow-2xl shadow-brand-accent/30 scale-[1.02]"
+                        ? "text-white/85 bg-white/[0.12] text-white scale-[1.01] shadow-lg shadow-white/10"
                         : "text-white/85 hover:bg-white/[0.12] hover:text-white hover:scale-[1.01]"
                     }`}
                   >
@@ -236,7 +236,7 @@ export function ModernSidebar({ isCollapsed = false, onToggle }: ModernSidebarPr
                           className={({ isActive }) =>
                             `group relative flex items-center gap-3 px-6 py-3 mx-2 rounded-xl transition-all duration-300 ${
                               isActive
-                                ? "bg-gradient-to-r from-brand-accent/80 to-brand-accent/60 text-white font-semibold shadow-lg shadow-brand-accent/20"
+                                ? "text-white/85 bg-white/[0.12] text-white"
                                 : "text-white/80 hover:bg-white/10 hover:text-white"
                             }`
                           }
