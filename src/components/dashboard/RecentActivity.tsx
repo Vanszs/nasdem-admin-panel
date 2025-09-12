@@ -130,13 +130,13 @@ const getPriorityIndicator = (priority?: string) => {
 
 export function RecentActivity() {
   return (
-    <Card className="group relative overflow-hidden border-0 shadow-sm hover:shadow-xl transition-all duration-500 bg-white/80 backdrop-blur-sm">
-      {/* Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
+    <Card className="group relative overflow-hidden border-2 border-gray-200/80 hover:border-gray-300/90 shadow-md hover:shadow-xl transition-all duration-500 bg-white/90 backdrop-blur-sm">
+      {/* Enhanced Gradient Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/8 via-transparent to-accent/8 opacity-50 group-hover:opacity-70 transition-opacity duration-500" />
       
-      <CardHeader className="relative pb-4">
+      <CardHeader className="relative pb-4 border-b border-gray-100/60">
         <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
-          <div className="w-1 h-6 bg-gradient-to-b from-primary to-accent rounded-full" />
+          <div className="w-2 h-6 bg-gradient-to-b from-primary to-accent rounded-full" />
           Aktivitas Terbaru
         </CardTitle>
         <p className="text-sm text-muted-foreground">Timeline perubahan dan update sistem</p>
@@ -150,23 +150,23 @@ export function RecentActivity() {
           return (
             <div key={activity.id} className={cn(
               "group/item relative overflow-hidden rounded-2xl p-4 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md cursor-pointer",
-              "bg-gradient-to-r from-white/50 via-white/30 to-white/50",
-              "border border-gray-200/50 hover:border-primary/20"
+              "bg-gradient-to-r from-white/70 via-white/50 to-white/70",
+              "border-2 border-gray-200/70 hover:border-primary/40"
             )}>
-              {/* Priority Indicator */}
+              {/* Enhanced Priority Indicator */}
               <div className={cn(
-                "absolute left-0 top-0 bottom-0 w-1 rounded-r-full transition-all duration-300",
+                "absolute left-0 top-0 bottom-0 w-1.5 rounded-r-full transition-all duration-300",
                 getPriorityIndicator(activity.priority),
-                "group-hover/item:w-1.5"
+                "group-hover/item:w-2"
               )} />
               
-              {/* Hover Effect Background */}
-              <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-accent/5 opacity-0 group-hover/item:opacity-100 transition-opacity duration-300" />
+              {/* Enhanced Hover Effect Background */}
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/8 via-transparent to-accent/8 opacity-0 group-hover/item:opacity-100 transition-opacity duration-300" />
               
               <div className="relative flex items-start gap-4">
-                {/* Icon with animated background */}
+                {/* Enhanced Icon with animated background */}
                 <div className={cn(
-                  "flex-shrink-0 p-3 rounded-2xl transition-all duration-300 group-hover/item:scale-110",
+                  "flex-shrink-0 p-3 rounded-2xl transition-all duration-300 group-hover/item:scale-110 border border-current/20",
                   "bg-gradient-to-br", config.bg,
                   "shadow-sm group-hover/item:shadow-lg"
                 )}>

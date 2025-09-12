@@ -50,22 +50,22 @@ export function KPICard({
 
   return (
     <Card className={cn(
-      "group relative overflow-hidden border border-black/5 shadow-sm hover:shadow-xl transition-all duration-500 ease-out transform hover:-translate-y-1 bg-white/80 backdrop-blur-sm",
+      "group relative overflow-hidden border-2 border-gray-200/80 hover:border-gray-300/90 shadow-md hover:shadow-xl transition-all duration-500 ease-out transform hover:-translate-y-1 bg-white/90 backdrop-blur-sm",
       className
     )}>
-      {/* Gradient Background */}
-      <div className={`absolute inset-0 bg-gradient-to-br ${gradientClasses[color]} opacity-60 group-hover:opacity-80 transition-opacity duration-500`} />
+      {/* Enhanced Gradient Background */}
+      <div className={`absolute inset-0 bg-gradient-to-br ${gradientClasses[color]} opacity-40 group-hover:opacity-70 transition-opacity duration-500`} />
       
-      {/* Animated Border */}
-      <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-primary/20 via-accent/20 to-primary/20 p-[1px] opacity-20 group-hover:opacity-100 transition-opacity duration-500">
-        <div className="h-full w-full rounded-xl bg-white/90 backdrop-blur-sm" />
+      {/* Enhanced Animated Border */}
+      <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-primary/30 via-accent/30 to-primary/30 p-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+        <div className="h-full w-full rounded-xl bg-white/95 backdrop-blur-sm" />
       </div>
 
-      <CardHeader className="relative flex flex-row items-center justify-between space-y-0 pb-2">
+      <CardHeader className="relative flex flex-row items-center justify-between space-y-0 pb-2 border-b border-gray-100/50">
         <h3 className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors duration-300">
           {title}
         </h3>
-        <div className={`p-3 rounded-2xl transition-all duration-500 group-hover:scale-110 ${colorClasses[color]}`}>
+        <div className={`p-3 rounded-2xl border border-current/20 transition-all duration-500 group-hover:scale-110 ${colorClasses[color]}`}>
           <Icon className="h-5 w-5 transition-transform duration-300" />
         </div>
       </CardHeader>

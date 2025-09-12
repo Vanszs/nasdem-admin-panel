@@ -48,12 +48,8 @@ export function AdminLayout({ children, breadcrumbs }: AdminLayoutProps) {
             }} />
           </div>
           
-          {/* Content Container with Proper Scrolling */}
-          <div className="relative z-10 min-h-full">
-            {/* Content with backdrop blur */}
-            <div className="bg-white/70 backdrop-blur-sm border-0 shadow-2xl shadow-black/5 min-h-full">
-              {children}
-            </div>
+          <div className="relative p-6">
+            {children}
           </div>
         </main>
 

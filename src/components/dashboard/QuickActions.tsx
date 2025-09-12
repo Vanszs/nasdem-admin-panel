@@ -41,13 +41,13 @@ const quickActions = [
 
 export function QuickActions() {
   return (
-    <Card className="group relative overflow-hidden border-0 shadow-sm hover:shadow-xl transition-all duration-500 bg-white/80 backdrop-blur-sm">
-      {/* Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
+    <Card className="group relative overflow-hidden border-2 border-gray-200/80 hover:border-gray-300/90 shadow-md hover:shadow-xl transition-all duration-500 bg-white/90 backdrop-blur-sm">
+      {/* Enhanced Gradient Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/8 via-transparent to-accent/8 opacity-50 group-hover:opacity-70 transition-opacity duration-500" />
       
-      <CardHeader className="relative pb-4">
+      <CardHeader className="relative pb-4 border-b border-gray-100/60">
         <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
-          <div className="w-1 h-6 bg-gradient-to-b from-primary to-accent rounded-full" />
+          <div className="w-2 h-6 bg-gradient-to-b from-primary to-accent rounded-full" />
           Quick Actions
         </CardTitle>
         <p className="text-sm text-muted-foreground">Akses cepat ke fitur utama</p>
@@ -59,15 +59,15 @@ export function QuickActions() {
             <div className={cn(
               "group/item relative overflow-hidden rounded-2xl p-4 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg cursor-pointer",
               "bg-gradient-to-br", action.gradient,
-              "border border-gray-200/50 hover:border-primary/20"
+              "border-2 border-gray-200/70 hover:border-primary/40"
             )}>
-              {/* Hover Effect Background */}
-              <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-accent/5 to-primary/5 opacity-0 group-hover/item:opacity-100 transition-opacity duration-300" />
+              {/* Enhanced Hover Effect Background */}
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/8 via-accent/8 to-primary/8 opacity-0 group-hover/item:opacity-100 transition-opacity duration-300" />
               
               <div className="relative flex items-center gap-4">
-                {/* Icon */}
+                {/* Enhanced Icon */}
                 <div className={cn(
-                  "flex-shrink-0 p-3 rounded-2xl transition-all duration-300 group-hover/item:scale-110",
+                  "flex-shrink-0 p-3 rounded-2xl transition-all duration-300 group-hover/item:scale-110 border border-white/30",
                   "bg-gradient-to-br", action.iconBg,
                   "shadow-lg group-hover/item:shadow-xl"
                 )}>
@@ -84,21 +84,21 @@ export function QuickActions() {
                   </p>
                 </div>
                 
-                {/* Arrow */}
+                {/* Enhanced Arrow */}
                 <ArrowRight className="h-4 w-4 text-muted-foreground group-hover/item:text-primary group-hover/item:translate-x-1 transition-all duration-300 flex-shrink-0" />
               </div>
               
-              {/* Decorative Elements */}
-              <div className="absolute -top-1 -right-1 w-16 h-16 bg-gradient-to-br from-white/10 to-transparent rounded-full blur-xl opacity-0 group-hover/item:opacity-100 transition-opacity duration-500" />
+              {/* Enhanced Decorative Elements */}
+              <div className="absolute -top-1 -right-1 w-16 h-16 bg-gradient-to-br from-white/20 to-transparent rounded-full blur-xl opacity-0 group-hover/item:opacity-100 transition-opacity duration-500" />
             </div>
           </SafeLink>
         ))}
         
-        {/* Add More Button */}
-        <div className="pt-4 border-t border-gray-200/50">
+        {/* Enhanced Add More Button */}
+        <div className="pt-4 border-t border-gray-200/60">
           <Button 
             variant="ghost" 
-            className="w-full h-12 rounded-2xl bg-gradient-to-r from-primary/5 via-accent/5 to-primary/5 hover:from-primary/10 hover:via-accent/10 hover:to-primary/10 border border-dashed border-primary/30 hover:border-primary/50 transition-all duration-300 group/add"
+            className="w-full h-12 rounded-2xl bg-gradient-to-r from-primary/8 via-accent/8 to-primary/8 hover:from-primary/12 hover:via-accent/12 hover:to-primary/12 border-2 border-dashed border-primary/40 hover:border-primary/60 transition-all duration-300 group/add"
           >
             <Plus className="h-4 w-4 mr-2 group-hover/add:rotate-90 transition-transform duration-300" />
             <span className="font-medium">Lihat Semua Menu</span>
