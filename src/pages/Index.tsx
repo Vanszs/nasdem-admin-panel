@@ -78,10 +78,10 @@ const Index = () => {
           </div>
 
           {/* Primary KPI Grid with Enhanced Borders */}
-          <section className="bg-white/70 backdrop-blur-sm rounded-2xl border border-gray-200/60 p-8 shadow-sm hover:shadow-md transition-all duration-300">
+          <section className="bg-white/80 backdrop-blur-sm rounded-2xl border-2 border-gray-300/80 p-8 shadow-lg hover:shadow-xl transition-all duration-300">
             <div className="mb-8">
               <div className="flex items-center gap-3 mb-3">
-                <div className="w-2 h-8 bg-gradient-to-b from-primary to-accent rounded-full"></div>
+                <div className="w-3 h-10 bg-gradient-to-b from-primary to-accent rounded-full shadow-md"></div>
                 <h2 className="text-3xl font-bold text-foreground">Overview Statistik</h2>
               </div>
               <p className="text-muted-foreground text-lg">Ringkasan performa dan aktivitas sistem real-time</p>
@@ -95,7 +95,7 @@ const Index = () => {
                 icon={FileText}
                 description="23 published, 5 draft"
                 color="primary"
-                className="hover:scale-[1.02] border border-gray-200/50 shadow-sm hover:shadow-lg transition-all duration-300"
+                className="hover:scale-[1.02] border-2 border-gray-300/80 hover:border-gray-400/90 shadow-lg hover:shadow-xl transition-all duration-300"
               />
               <KPICard
                 title="Berita Terbaca"
@@ -104,7 +104,7 @@ const Index = () => {
                 icon={Eye}
                 description="Pengunjung unik"
                 color="success"
-                className="hover:scale-[1.02] border border-gray-200/50 shadow-sm hover:shadow-lg transition-all duration-300"
+                className="hover:scale-[1.02] border-2 border-gray-300/80 hover:border-gray-400/90 shadow-lg hover:shadow-xl transition-all duration-300"
               />
               <KPICard
                 title="Media Galeri"
@@ -113,7 +113,7 @@ const Index = () => {
                 icon={Image}
                 description="15 album aktif"
                 color="info"
-                className="hover:scale-[1.02] border border-gray-200/50 shadow-sm hover:shadow-lg transition-all duration-300"
+                className="hover:scale-[1.02] border-2 border-gray-300/80 hover:border-gray-400/90 shadow-lg hover:shadow-xl transition-all duration-300"
               />
               <KPICard
                 title="Struktur Aktif"
@@ -122,7 +122,7 @@ const Index = () => {
                 icon={Users}
                 description="DPD, Sayap, DPC, DPRT"
                 color="accent"
-                className="hover:scale-[1.02] border border-gray-200/50 shadow-sm hover:shadow-lg transition-all duration-300"
+                className="hover:scale-[1.02] border-2 border-gray-300/80 hover:border-gray-400/90 shadow-lg hover:shadow-xl transition-all duration-300"
               />
             </div>
 
@@ -139,7 +139,7 @@ const Index = () => {
                   icon={Clock}
                   description="Siap publikasi otomatis"
                   color="warning"
-                  className="hover:scale-[1.02] border border-gray-200/50 shadow-sm hover:shadow-md transition-all duration-300"
+                  className="hover:scale-[1.02] border-2 border-gray-300/80 hover:border-gray-400/90 shadow-lg hover:shadow-xl transition-all duration-300"
                 />
                 <KPICard
                   title="Draft Tersimpan"
@@ -147,7 +147,7 @@ const Index = () => {
                   icon={Archive}
                   description="Menunggu review"
                   color="info"
-                  className="hover:scale-[1.02] border border-gray-200/50 shadow-sm hover:shadow-md transition-all duration-300"
+                  className="hover:scale-[1.02] border-2 border-gray-300/80 hover:border-gray-400/90 shadow-lg hover:shadow-xl transition-all duration-300"
                 />
                 <KPICard
                   title="Aktivitas Hari Ini"
@@ -156,7 +156,7 @@ const Index = () => {
                   icon={TrendingUp}
                   description="Pembaruan konten"
                   color="success"
-                  className="hover:scale-[1.02] border border-gray-200/50 shadow-sm hover:shadow-md transition-all duration-300"
+                  className="hover:scale-[1.02] border-2 border-gray-300/80 hover:border-gray-400/90 shadow-lg hover:shadow-xl transition-all duration-300"
                 />
                 <KPICard
                   title="Event Mendatang"
@@ -164,7 +164,7 @@ const Index = () => {
                   icon={Calendar}
                   description="7 hari ke depan"
                   color="accent"
-                  className="hover:scale-[1.02] border border-gray-200/50 shadow-sm hover:shadow-md transition-all duration-300"
+                  className="hover:scale-[1.02] border-2 border-gray-300/80 hover:border-gray-400/90 shadow-lg hover:shadow-xl transition-all duration-300"
                 />
               </div>
             </div>
@@ -173,9 +173,9 @@ const Index = () => {
           {/* Dashboard Content Grid with Enhanced Layout */}
           <section className="grid grid-cols-1 xl:grid-cols-12 gap-8">
             <div className="xl:col-span-8">
-              <div className="bg-white/70 backdrop-blur-sm rounded-2xl border border-gray-200/60 p-6 shadow-sm hover:shadow-md transition-all duration-300">
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl border-2 border-gray-300/80 p-6 shadow-lg hover:shadow-xl transition-all duration-300">
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="w-2 h-8 bg-gradient-to-b from-primary to-accent rounded-full"></div>
+                  <div className="w-3 h-10 bg-gradient-to-b from-primary to-accent rounded-full shadow-md"></div>
                   <h3 className="text-xl font-semibold text-foreground">Aktivitas Terbaru</h3>
                 </div>
                 <RecentActivity />
@@ -183,9 +183,9 @@ const Index = () => {
             </div>
             
             <div className="xl:col-span-4">
-              <div className="bg-white/70 backdrop-blur-sm rounded-2xl border border-gray-200/60 p-6 shadow-sm hover:shadow-md transition-all duration-300">
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl border-2 border-gray-300/80 p-6 shadow-lg hover:shadow-xl transition-all duration-300">
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="w-2 h-8 bg-gradient-to-b from-accent to-primary rounded-full"></div>
+                  <div className="w-3 h-10 bg-gradient-to-b from-accent to-primary rounded-full shadow-md"></div>
                   <h3 className="text-xl font-semibold text-foreground">Quick Actions</h3>
                 </div>
                 <QuickActions />

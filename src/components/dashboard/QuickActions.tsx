@@ -94,11 +94,11 @@ export function QuickActions() {
           </SafeLink>
         ))}
         
-        {/* Enhanced Add More Button */}
+        {/* Enhanced Add More Button - Non-glossy */}
         <div className="pt-4 border-t border-gray-200/60">
           <Button 
-            variant="ghost" 
-            className="w-full h-12 rounded-2xl bg-gradient-to-r from-primary/8 via-accent/8 to-primary/8 hover:from-primary/12 hover:via-accent/12 hover:to-primary/12 border-2 border-dashed border-primary/40 hover:border-primary/60 transition-all duration-300 group/add"
+            variant="outline" 
+            className="w-full h-12 rounded-2xl bg-white border-2 border-gray-300 hover:border-primary hover:bg-primary/5 text-foreground hover:text-primary transition-all duration-300 group/add"
           >
             <Plus className="h-4 w-4 mr-2 group-hover/add:rotate-90 transition-transform duration-300" />
             <span className="font-medium">Lihat Semua Menu</span>

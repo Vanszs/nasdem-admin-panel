@@ -12,17 +12,17 @@ export function AdminLayout({ children, breadcrumbs }: AdminLayoutProps) {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 relative">
-      {/* Modern Sidebar - Fixed Position */}
-      <div className={`fixed top-0 left-0 z-40 h-full transition-transform duration-500 ${
-        sidebarCollapsed ? '-translate-x-full' : 'translate-x-0'
+      {/* Modern Sidebar - Always visible on desktop, hideable on mobile */}
+      <div className={`fixed top-0 left-0 z-40 h-full transition-transform duration-500 lg:translate-x-0 ${
+        sidebarCollapsed ? '-translate-x-full lg:translate-x-0' : 'translate-x-0'
       }`}>
         <ModernSidebar 
-          isCollapsed={sidebarCollapsed} 
+          isCollapsed={false} 
           onToggle={() => setSidebarCollapsed(!sidebarCollapsed)} 
         />
       </div>
 
-      {/* Overlay for mobile */}
+      {/* Overlay for mobile only */}
       {!sidebarCollapsed && (
         <div 
           className="fixed inset-0 bg-black/50 backdrop-blur-sm z-30 lg:hidden"
@@ -30,12 +30,10 @@ export function AdminLayout({ children, breadcrumbs }: AdminLayoutProps) {
         />
       )}
       
-      {/* Main Content Area */}
-      <div className={`min-h-screen flex flex-col transition-all duration-500 ease-out ${
-        sidebarCollapsed ? 'lg:ml-0' : 'lg:ml-80'
-      }`}>
+      {/* Main Content Area - Always account for sidebar on desktop */}
+      <div className="min-h-screen flex flex-col lg:ml-80">
         {/* Top Navigation */}
-        <TopNavbar breadcrumbs={breadcrumbs} />
+        <TopNavbar breadcrumbs={breadcrumbs} onToggleSidebar={() => setSidebarCollapsed(!sidebarCollapsed)} />
         
         {/* Main Content with Proper Scrolling */}
         <main className="flex-1 relative">

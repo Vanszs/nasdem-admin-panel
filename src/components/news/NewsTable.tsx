@@ -13,7 +13,9 @@ import {
   Filter,
   SortAsc,
   FileText,
-  Plus
+  Plus,
+  ChevronLeft,
+  ChevronRight
 } from "lucide-react";
 import {
   Table,
@@ -109,10 +111,22 @@ const mockNews: News[] = [
 ];
 
 const statusConfig = {
-  DRAFT: { label: "Draft", className: "status-draft" },
-  SCHEDULED: { label: "Terjadwal", className: "status-scheduled" },
-  PUBLISHED: { label: "Published", className: "status-published" },
-  ARCHIVED: { label: "Diarsip", className: "status-archived" },
+  DRAFT: { 
+    label: "Draft", 
+    className: "bg-gray-100 text-gray-700 border-2 border-gray-300 hover:bg-gray-200 font-medium px-3 py-1.5 min-w-[80px] justify-center" 
+  },
+  SCHEDULED: { 
+    label: "Terjadwal", 
+    className: "bg-yellow-100 text-yellow-700 border-2 border-yellow-300 hover:bg-yellow-200 font-medium px-3 py-1.5 min-w-[80px] justify-center" 
+  },
+  PUBLISHED: { 
+    label: "Published", 
+    className: "bg-green-100 text-green-700 border-2 border-green-300 hover:bg-green-200 font-medium px-3 py-1.5 min-w-[80px] justify-center" 
+  },
+  ARCHIVED: { 
+    label: "Diarsip", 
+    className: "bg-orange-100 text-orange-700 border-2 border-orange-300 hover:bg-orange-200 font-medium px-3 py-1.5 min-w-[80px] justify-center" 
+  },
 };
 
 export function NewsTable() {
@@ -122,6 +136,8 @@ export function NewsTable() {
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const [pinDialogOpen, setPinDialogOpen] = useState(false);
   const [pendingPinNews, setPendingPinNews] = useState<News | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(10);
   const { toast } = useToast();
 
   const filteredNews = news.filter(item => {
@@ -130,6 +146,16 @@ export function NewsTable() {
     const matchesStatus = statusFilter === "all" || item.status === statusFilter;
     return matchesSearch && matchesStatus;
   });
+
+  // Pagination logic
+  const totalPages = Math.ceil(filteredNews.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const paginatedNews = filteredNews.slice(startIndex, endIndex);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
 
   const currentPinned = news.find(item => item.pinned);
 
@@ -230,7 +256,11 @@ export function NewsTable() {
                 />
               </TableHead>
               <TableHead>
-                <Button variant="ghost" size="sm" className="h-auto p-0 font-medium">
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  className="h-auto p-2 font-medium text-foreground hover:text-primary hover:bg-primary/10 border-2 border-transparent hover:border-primary/20 rounded-lg transition-all duration-300"
+                >
                   Judul <SortAsc className="ml-1 h-3 w-3" />
                 </Button>
               </TableHead>
@@ -242,7 +272,7 @@ export function NewsTable() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {filteredNews.map((newsItem) => (
+            {paginatedNews.map((newsItem) => (
               <TableRow key={newsItem.id} className="group">
                 <TableCell>
                   <Checkbox
@@ -388,6 +418,57 @@ export function NewsTable() {
           </div>
         )}
       </div>
+
+      {/* Modern Pagination Controls */}
+      {filteredNews.length > 0 && totalPages > 1 && (
+        <div className="flex items-center justify-between pt-6 border-t border-gray-200/60">
+          <div className="text-sm text-muted-foreground">
+            Menampilkan {startIndex + 1}-{Math.min(endIndex, filteredNews.length)} dari {filteredNews.length} berita
+          </div>
+          
+          <div className="flex items-center gap-2">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
+              className="border-2 border-gray-200 hover:border-gray-300"
+            >
+              <ChevronLeft className="h-4 w-4" />
+              Sebelumnya
+            </Button>
+            
+            <div className="flex items-center gap-1">
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                <Button
+                  key={page}
+                  variant={page === currentPage ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => handlePageChange(page)}
+                  className={`min-w-[40px] border-2 ${
+                    page === currentPage 
+                      ? 'bg-primary border-primary text-white' 
+                      : 'border-gray-200 hover:border-gray-300'
+                  }`}
+                >
+                  {page}
+                </Button>
+              ))}
+            </div>
+            
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === totalPages}
+              className="border-2 border-gray-200 hover:border-gray-300"
+            >
+              Selanjutnya
+              <ChevronRight className="h-4 w-4" />
+            </Button>
+          </div>
+        </div>
+      )}
 
       {/* Pin Confirmation Dialog */}
       <PinConfirmDialog

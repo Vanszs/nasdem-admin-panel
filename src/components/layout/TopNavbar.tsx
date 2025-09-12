@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Search, Bell, User, LogOut, Settings, ChevronDown, Home } from "lucide-react";
+import { Search, Bell, User, LogOut, Settings, ChevronDown, Home, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -23,9 +23,10 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 interface TopNavbarProps {
   breadcrumbs?: { label: string; href?: string }[];
+  onToggleSidebar?: () => void;
 }
 
-export function TopNavbar({ breadcrumbs = [] }: TopNavbarProps) {
+export function TopNavbar({ breadcrumbs = [], onToggleSidebar }: TopNavbarProps) {
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearch = (e: React.FormEvent) => {
@@ -36,8 +37,21 @@ export function TopNavbar({ breadcrumbs = [] }: TopNavbarProps) {
   return (
     <header className="sticky top-0 z-50 w-full bg-white/90 backdrop-blur-xl border-b-2 border-gray-200/80 hover:border-gray-300/90 transition-all duration-300 shadow-md hover:shadow-lg">
       <div className="flex h-16 items-center justify-between px-6 lg:px-8">
-        {/* Left Section - Title & Breadcrumbs */}
-        <div className="flex items-center gap-6">
+        {/* Left Section - Mobile Menu & Breadcrumbs */}
+        <div className="flex items-center gap-4">
+          {/* Mobile Hamburger Menu */}
+          {onToggleSidebar && (
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={onToggleSidebar}
+              className="lg:hidden h-10 w-10 rounded-xl border-2 border-gray-200/80 hover:border-gray-300/90 bg-white hover:bg-gray-50 transition-all duration-300 shadow-sm hover:shadow-md"
+            >
+              <Menu className="h-5 w-5" />
+              <span className="sr-only">Toggle sidebar</span>
+            </Button>
+          )}
+          
           {breadcrumbs.length > 0 ? (
             <Breadcrumb className="hidden md:flex">
               <BreadcrumbList>
@@ -77,7 +91,7 @@ export function TopNavbar({ breadcrumbs = [] }: TopNavbarProps) {
           )}
         </div>
 
-        {/* Center Section - Global Search */}
+        {/* Center Section - Enhanced Global Search */}
         <div className="hidden lg:flex flex-1 max-w-md mx-8">
           <form onSubmit={handleSearch} className="w-full relative group">
             <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground/70 group-focus-within:text-primary h-4 w-4 transition-colors duration-300" />
@@ -86,7 +100,7 @@ export function TopNavbar({ breadcrumbs = [] }: TopNavbarProps) {
               placeholder="Cari berita, galeri, struktur... (⌘K)"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-11 pr-4 h-11 w-full bg-gray-50/80 border-gray-200/60 rounded-2xl focus:bg-white focus:border-primary/40 focus:ring-2 focus:ring-primary/10 transition-all duration-300 shadow-sm hover:shadow-md"
+              className="pl-11 pr-4 h-11 w-full bg-white border-2 border-gray-200/80 hover:border-gray-300/90 rounded-2xl focus:bg-white focus:border-primary/60 focus:ring-2 focus:ring-primary/20 transition-all duration-300 shadow-sm hover:shadow-md"
             />
             <div className="absolute inset-0 -z-10 bg-gradient-to-r from-primary/5 to-accent/5 rounded-2xl opacity-0 group-focus-within:opacity-100 transition-opacity duration-300" />
           </form>
@@ -104,16 +118,16 @@ export function TopNavbar({ breadcrumbs = [] }: TopNavbarProps) {
             <span className="sr-only">Search</span>
           </Button>
 
-          {/* Notifications */}
+          {/* Enhanced Notifications */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
                 variant="ghost"
                 size="icon"
-                className="relative h-10 w-10 rounded-xl hover:bg-gray-100 transition-all duration-300 group"
+                className="relative h-10 w-10 rounded-xl border-2 border-gray-200/80 hover:border-gray-300/90 bg-white hover:bg-gray-50 transition-all duration-300 group shadow-sm hover:shadow-md"
               >
                 <Bell className="h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
-                <Badge className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-accent text-white text-xs font-bold p-0 flex items-center justify-center animate-pulse">
+                <Badge className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-accent border-2 border-white text-white text-xs font-bold p-0 flex items-center justify-center animate-pulse shadow-md">
                   3
                 </Badge>
                 <span className="sr-only">Notifications</span>
@@ -168,12 +182,12 @@ export function TopNavbar({ breadcrumbs = [] }: TopNavbarProps) {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          {/* Profile Dropdown */}
+          {/* Enhanced Profile Dropdown */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="relative h-12 w-auto px-3 rounded-xl hover:bg-gray-100 transition-all duration-300 group">
+              <Button variant="ghost" className="relative h-12 w-auto px-3 rounded-xl border-2 border-gray-200/80 hover:border-gray-300/90 bg-white hover:bg-gray-50 transition-all duration-300 group shadow-sm hover:shadow-md">
                 <div className="flex items-center gap-3">
-                  <Avatar className="h-8 w-8 ring-2 ring-offset-2 ring-offset-background ring-primary/20 group-hover:ring-primary/40 transition-all duration-300">
+                  <Avatar className="h-8 w-8 ring-2 ring-offset-2 ring-offset-white ring-primary/30 group-hover:ring-primary/50 transition-all duration-300 shadow-sm">
                     <AvatarImage src="/placeholder-avatar.jpg" alt="Admin" />
                     <AvatarFallback className="bg-gradient-to-br from-primary to-primary/80 text-white text-sm font-semibold">
                       AD
