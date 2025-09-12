@@ -130,7 +130,7 @@ export function ModernSidebar({ isCollapsed = false, onToggle }: ModernSidebarPr
   const getNavClassName = ({ isActive }: { isActive: boolean }) =>
     `group relative flex items-center gap-3 px-4 py-3 mx-3 rounded-2xl font-medium transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden ${
       isActive 
-        ? "bg-gradient-to-r from-brand-accent via-brand-accent to-brand-accent/90 text-white shadow-2xl shadow-brand-accent/30 scale-[1.02] z-10" 
+        ? "text-white/85 bg-white/[0.12] text-white scale-[1.01] shadow-lg shadow-white/10"
         : "text-white/85 hover:bg-white/[0.12] hover:text-white hover:scale-[1.01] hover:shadow-lg hover:shadow-white/10"
     }`;
 
@@ -182,17 +182,8 @@ export function ModernSidebar({ isCollapsed = false, onToggle }: ModernSidebarPr
       </div>
 
       {/* Navigation with Enhanced Animations and No Scrollbar */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-2 min-h-0 scrollbar-hide">
+      <div className="flex-1 overflow-y-auto px-4 pb-4 pt-1 space-y-2 min-h-0 scrollbar-hide">
         <div className="space-y-1">
-          {!isCollapsed && (
-            <div className="px-4 py-2 mb-6">
-              <p className="text-white/70 text-xs font-semibold uppercase tracking-[0.1em] flex items-center gap-2">
-                <div className="w-6 h-[2px] bg-white/50 rounded-full"></div>
-                Navigation
-              </p>
-            </div>
-          )}
-          
           {menuItems.map((item, index) => (
             <div 
               key={item.title}
@@ -207,11 +198,11 @@ export function ModernSidebar({ isCollapsed = false, onToggle }: ModernSidebarPr
                     onClick={() => toggleGroup(item.title)}
                     onMouseEnter={() => setHoveredItem(item.title)}
                     onMouseLeave={() => setHoveredItem(null)}
-                    className={`sidebar-nav-item w-full ${
+                    className={`w-full group relative flex items-center gap-3 px-4 py-3 mx-3 rounded-2xl font-medium transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden ${
                       isGroupActive(item.subItems)
                         ? "bg-gradient-to-r from-brand-accent via-brand-accent to-brand-accent/90 text-white shadow-2xl shadow-brand-accent/30 scale-[1.02]"
                         : "text-white/85 hover:bg-white/[0.12] hover:text-white hover:scale-[1.01]"
-                    } group relative flex items-center gap-3 px-4 py-3 mx-3 rounded-2xl font-medium transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden`}
+                    }`}
                   >
                     <div className="relative z-10 flex items-center gap-3 w-full">
                       <item.icon className="h-5 w-5 flex-shrink-0 transition-all duration-300 group-hover:scale-110" />
@@ -264,9 +255,7 @@ export function ModernSidebar({ isCollapsed = false, onToggle }: ModernSidebarPr
               ) : (
                 <SafeNavLink
                   to={item.url}
-                  className={({ isActive }) =>
-                    `sidebar-nav-item ${getNavClassName({ isActive })} group relative overflow-hidden`
-                  }
+                  className={({ isActive }) => getNavClassName({ isActive })}
                 >
                   <div className="relative z-10 flex items-center gap-3 w-full">
                     <item.icon className="h-5 w-5 flex-shrink-0 text-white/90 group-hover:text-white transition-all duration-300 group-hover:scale-110" />

@@ -200,34 +200,6 @@ All colors MUST be HSL.
     box-shadow: 0 0 20px hsl(var(--warning) / 0.2);
   }
   
-  /* Sidebar specific styles */
-  .sidebar-nav-item {
-    position: relative;
-    overflow: hidden;
-    border-radius: 1rem;
-    transition: all 0.3s ease-out;
-  }
-  
-  .sidebar-nav-item::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(90deg, 
-      hsl(var(--accent) / 0) 0%, 
-      hsl(var(--accent) / 0.1) 50%, 
-      hsl(var(--accent) / 0) 100%
-    );
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-  
-  .sidebar-nav-item:hover::before {
-    opacity: 1;
-  }
-  
   /* Floating elements */
   .floating-element {
     transform: translateZ(0);

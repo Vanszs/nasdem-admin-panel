@@ -50,14 +50,14 @@ export function KPICard({
 
   return (
     <Card className={cn(
-      "group relative overflow-hidden border-0 shadow-sm hover:shadow-xl transition-all duration-500 ease-out transform hover:-translate-y-1 bg-white/80 backdrop-blur-sm",
+      "group relative overflow-hidden border border-black/5 shadow-sm hover:shadow-xl transition-all duration-500 ease-out transform hover:-translate-y-1 bg-white/80 backdrop-blur-sm",
       className
     )}>
       {/* Gradient Background */}
       <div className={`absolute inset-0 bg-gradient-to-br ${gradientClasses[color]} opacity-60 group-hover:opacity-80 transition-opacity duration-500`} />
       
       {/* Animated Border */}
-      <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-primary/20 via-accent/20 to-primary/20 p-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+      <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-primary/20 via-accent/20 to-primary/20 p-[1px] opacity-20 group-hover:opacity-100 transition-opacity duration-500">
         <div className="h-full w-full rounded-xl bg-white/90 backdrop-blur-sm" />
       </div>
 

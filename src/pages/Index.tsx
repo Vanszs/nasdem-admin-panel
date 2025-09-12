@@ -23,12 +23,12 @@ const Index = () => {
 
   return (
     <AdminLayout breadcrumbs={breadcrumbs}>
-      <div className="min-h-screen space-y-8">
+      <div className="p-6 space-y-6 max-w-7xl mx-auto">
         {/* Modern Hero Section with Glassmorphism */}
         <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary via-primary/90 to-accent text-white shadow-2xl">
           {/* Background Pattern */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_transparent_0%,_rgba(255,255,255,0.1)_50%,_transparent_100%)]" />
-          <div 
+          <div
             className="absolute inset-0 bg-cover bg-center opacity-10 mix-blend-overlay"
             style={{ backgroundImage: `url(${heroImage})` }}
           />
@@ -76,7 +76,7 @@ const Index = () => {
         </div>
 
         {/* Primary KPI Grid */}
-        <div className="px-6 lg:px-8">
+        <div>
           <div className="mb-6">
             <h2 className="text-2xl font-bold text-foreground mb-2">Overview Statistik</h2>
             <p className="text-muted-foreground">Ringkasan performa dan aktivitas sistem real-time</p>
