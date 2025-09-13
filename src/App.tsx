@@ -11,6 +11,7 @@ import { GalleryPage } from "./pages/gallery/GalleryPage";
 import { MediaUploadPage } from "./pages/gallery/MediaUploadPage";
 import { StructurePage } from "./pages/structure/StructurePage";
 import { MemberListPage } from "./pages/members/MemberListPage";
+import { LandingPageManagement } from "./pages/LandingPageManagement";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +23,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/landing" element={<LandingPageManagement />} />
           <Route path="/news" element={<NewsListPage />} />
           <Route path="/news/create" element={<NewsFormPage />} />
           <Route path="/news/:type" element={<NewsFormPage />} />
