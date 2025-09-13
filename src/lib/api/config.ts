@@ -1,14 +1,17 @@
 // Database configuration and connection settings
+const viteEnv = (import.meta as any).env || {};
+const nextEnv = typeof process !== 'undefined' ? process.env : {} as any;
+
 export const dbConfig = {
-  host: (import.meta as any).env?.VITE_DB_HOST || 'localhost',
-  port: parseInt((import.meta as any).env?.VITE_DB_PORT || '3306'),
-  user: (import.meta as any).env?.VITE_DB_USER || 'root',
-  password: (import.meta as any).env?.VITE_DB_PASSWORD || '',
-  database: (import.meta as any).env?.VITE_DB_NAME || 'nasdem_admin_panel',
+  host: (nextEnv.NEXT_PUBLIC_DB_HOST as string) || viteEnv.VITE_DB_HOST || 'localhost',
+  port: parseInt(((nextEnv.NEXT_PUBLIC_DB_PORT as string) || viteEnv.VITE_DB_PORT || '3306'), 10),
+  user: (nextEnv.NEXT_PUBLIC_DB_USER as string) || viteEnv.VITE_DB_USER || 'root',
+  password: (nextEnv.NEXT_PUBLIC_DB_PASSWORD as string) || viteEnv.VITE_DB_PASSWORD || '',
+  database: (nextEnv.NEXT_PUBLIC_DB_NAME as string) || viteEnv.VITE_DB_NAME || 'nasdem_admin_panel',
 };
 
 // API base URL
-export const API_BASE_URL = (import.meta as any).env?.VITE_API_URL || 'http://localhost:3001/api';
+export const API_BASE_URL = (nextEnv.NEXT_PUBLIC_API_URL as string) || viteEnv.VITE_API_URL || 'http://localhost:3001/api';
 
 // API endpoints
 export const API_ENDPOINTS = {

@@ -1,3 +1,4 @@
+"use client";
 import { ReactNode, useState } from "react";
 import { ModernSidebar } from "./ModernSidebar";
 import { TopNavbar } from "./TopNavbar";
@@ -46,7 +47,7 @@ export function AdminLayout({ children, breadcrumbs }: AdminLayoutProps) {
             }} />
           </div>
           
-          <div className="relative p-6 min-h-screen bg-gradient-to-br from-white/80 via-gray-50/30 to-white/60 backdrop-blur-sm border border-gray-200/60 rounded-2xl m-4 shadow-sm">
+          <div className="relative p-6 min-h-screen bg-gradient-to-br from-white/80 via-gray-50/30 to-white/60 backdrop-blur-sm border border-gray-200/60 rounded-smooth-xl m-4 shadow-sm">
             {children}
           </div>
         </main>
@@ -54,7 +55,7 @@ export function AdminLayout({ children, breadcrumbs }: AdminLayoutProps) {
         {/* Sidebar Toggle Button for Mobile */}
         <button
           onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-          className="fixed bottom-6 left-6 z-50 lg:hidden bg-primary text-white p-3 rounded-2xl shadow-xl hover:scale-110 transition-all duration-300"
+          className="fixed bottom-6 left-6 z-50 lg:hidden bg-primary text-white p-3 rounded-smooth shadow-xl hover:scale-110 transition-all duration-300"
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
             <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
@@ -66,7 +67,7 @@ export function AdminLayout({ children, breadcrumbs }: AdminLayoutProps) {
       <div className="fixed bottom-6 right-6 z-50 lg:hidden">
         <button
           onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-          className="w-14 h-14 bg-brand-primary rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center justify-center text-white hover:scale-110"
+          className="w-14 h-14 bg-brand-primary rounded-smooth shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center justify-center text-white hover:scale-110"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />

@@ -1,5 +1,6 @@
+"use client";
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { usePathname } from "next/navigation";
 import {
   LayoutDashboard,
   FileText,
@@ -84,14 +85,7 @@ export function AppSidebar() {
   const { state } = useSidebar();
   const [openGroups, setOpenGroups] = useState<string[]>(["Struktur"]);
   
-  // Safely get location, fallback if not in router context
-  let currentPath = "/";
-  try {
-    const location = useLocation();
-    currentPath = location.pathname;
-  } catch {
-    // Not in router context, use default
-  }
+  const currentPath = usePathname() || "/";
 
   const isActive = (path: string) => currentPath === path;
   const isGroupActive = (subItems?: { url: string }[]) => 

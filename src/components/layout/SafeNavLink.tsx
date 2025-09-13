@@ -1,5 +1,8 @@
-import { ReactNode } from "react";
-import { NavLink as RouterNavLink, useLocation } from "react-router-dom";
+"use client";
+
+import { ReactNode, useMemo } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 interface SafeNavLinkProps {
   to: string;
@@ -8,34 +11,16 @@ interface SafeNavLinkProps {
 }
 
 export function SafeNavLink({ to, children, className }: SafeNavLinkProps) {
-  // Check if we're in a router context
-  let isInRouter = true;
-  let currentPath = "";
-  
-  try {
-    const location = useLocation();
-    currentPath = location.pathname;
-  } catch {
-    isInRouter = false;
-  }
+  const pathname = usePathname();
+  const isActive = useMemo(() => pathname === to, [pathname, to]);
 
-  if (!isInRouter) {
-    // Fallback to regular link behavior when not in router context
-    const computedClassName = typeof className === "function" 
-      ? className({ isActive: false })
-      : className;
-      
-    return (
-      <a href={to} className={computedClassName}>
-        {children}
-      </a>
-    );
-  }
+  const computedClassName = typeof className === "function"
+    ? className({ isActive })
+    : className;
 
-  // Use actual NavLink when in router context
   return (
-    <RouterNavLink to={to} className={className}>
+    <Link href={to} className={computedClassName}>
       {children}
-    </RouterNavLink>
+    </Link>
   );
 }

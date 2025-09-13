@@ -9,12 +9,12 @@ import {
   Archive,
   Sparkles 
 } from "lucide-react";
-import { AdminLayout } from "@/components/layout/AdminLayout";
-import { KPICard } from "@/components/dashboard/KPICard";
-import { QuickActions } from "@/components/dashboard/QuickActions";
-import { RecentActivity } from "@/components/dashboard/RecentActivity";
-import { Badge } from "@/components/ui/badge";
-import heroImage from "@/assets/dashboard-hero.jpg";
+import { AdminLayout } from "../components/layout/AdminLayout";
+import { KPICard } from "../components/dashboard/KPICard";
+import { QuickActions } from "../components/dashboard/QuickActions";
+import { RecentActivity } from "../components/dashboard/RecentActivity";
+import { Badge } from "../components/ui/badge";
+import heroImage from "../assets/dashboard-hero.jpg";
 
 const Index = () => {
   const breadcrumbs = [
@@ -26,7 +26,7 @@ const Index = () => {
       <div className="min-h-screen bg-gradient-to-br from-gray-50/50 via-white to-blue-50/30">
         <div className="space-y-8">
           {/* Modern Hero Section with Enhanced Borders */}
-          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary via-primary/90 to-accent text-white shadow-2xl border border-white/20 backdrop-blur-sm">
+          <div className="relative overflow-hidden rounded-smooth-2xl bg-gradient-to-br from-primary via-primary/90 to-accent text-white shadow-2xl border border-white/20 backdrop-blur-sm">
             {/* Enhanced Background Pattern */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_transparent_0%,_rgba(255,255,255,0.1)_50%,_transparent_100%)]" />
             <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/5 to-transparent" />
@@ -41,7 +41,7 @@ const Index = () => {
             
             <div className="relative p-10 lg:p-12">
               <div className="flex items-center gap-3 mb-4">
-                <div className="p-3 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20">
+                <div className="p-3 bg-white/10 backdrop-blur-sm rounded-smooth border border-white/20">
                   <Sparkles className="h-6 w-6" />
                 </div>
                 <Badge className="bg-white/10 border-white/20 text-white hover:bg-white/20 backdrop-blur-sm">
@@ -78,7 +78,7 @@ const Index = () => {
           </div>
 
           {/* Primary KPI Grid with Enhanced Borders */}
-          <section className="bg-white/80 backdrop-blur-sm rounded-2xl border-2 border-gray-300/80 p-8 shadow-lg hover:shadow-xl transition-all duration-300">
+          <section className="bg-white/80 backdrop-blur-sm rounded-smooth-xl border-2 border-gray-300/80 p-8 shadow-lg hover:shadow-xl transition-all duration-300">
             <div className="mb-8">
               <div className="flex items-center gap-3 mb-3">
                 <div className="w-3 h-10 bg-gradient-to-b from-primary to-accent rounded-full shadow-md"></div>
@@ -173,7 +173,7 @@ const Index = () => {
           {/* Dashboard Content Grid with Enhanced Layout */}
           <section className="grid grid-cols-1 xl:grid-cols-12 gap-8">
             <div className="xl:col-span-8">
-              <div className="bg-white/80 backdrop-blur-sm rounded-2xl border-2 border-gray-300/80 p-6 shadow-lg hover:shadow-xl transition-all duration-300">
+              <div className="bg-white/80 backdrop-blur-sm rounded-smooth-xl border-2 border-gray-300/80 p-6 shadow-lg hover:shadow-xl transition-all duration-300">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-3 h-10 bg-gradient-to-b from-primary to-accent rounded-full shadow-md"></div>
                   <h3 className="text-xl font-semibold text-foreground">Aktivitas Terbaru</h3>
@@ -183,7 +183,7 @@ const Index = () => {
             </div>
             
             <div className="xl:col-span-4">
-              <div className="bg-white/80 backdrop-blur-sm rounded-2xl border-2 border-gray-300/80 p-6 shadow-lg hover:shadow-xl transition-all duration-300">
+              <div className="bg-white/80 backdrop-blur-sm rounded-smooth-xl border-2 border-gray-300/80 p-6 shadow-lg hover:shadow-xl transition-all duration-300">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-3 h-10 bg-gradient-to-b from-accent to-primary rounded-full shadow-md"></div>
                   <h3 className="text-xl font-semibold text-foreground">Quick Actions</h3>

@@ -1,0 +1,6 @@
+{
+  "/landing/page": "app/landing/page.js",
+  "/structure/sayap/page": "app/structure/sayap/page.js",
+  "/news/page": "app/news/page.js",
+  "/page": "app/page.js"
+}

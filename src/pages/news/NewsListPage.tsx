@@ -1,8 +1,8 @@
 import { Plus } from "lucide-react";
-import { AdminLayout } from "@/components/layout/AdminLayout";
-import { Button } from "@/components/ui/button";
-import { NewsTable } from "@/components/news/NewsTable";
-import { SafeLink } from "@/components/layout/SafeLink";
+import { AdminLayout } from "../../components/layout/AdminLayout";
+import { Button } from "../../components/ui/button";
+import { NewsTable } from "../../components/news/NewsTable";
+import { SafeLink } from "../../components/layout/SafeLink";
 
 export function NewsListPage() {
   const breadcrumbs = [
@@ -14,7 +14,7 @@ export function NewsListPage() {
     <AdminLayout breadcrumbs={breadcrumbs}>
       <div className="space-y-6">
         {/* Header Section with Border */}
-        <div className="bg-white/70 backdrop-blur-sm border-2 border-gray-200/80 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300">
+        <div className="bg-white/70 backdrop-blur-sm border-2 border-gray-200/80 rounded-smooth-xl p-6 shadow-sm hover:shadow-md transition-all duration-300">
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-2xl font-bold">Kelola Berita</h1>
@@ -32,7 +32,7 @@ export function NewsListPage() {
         </div>
         
         {/* News Table Section with Border */}
-        <div className="bg-white/80 backdrop-blur-sm border-2 border-gray-200/80 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
+        <div className="bg-white/80 backdrop-blur-sm border-2 border-gray-200/80 rounded-smooth-xl shadow-lg hover:shadow-xl transition-all duration-300">
           <NewsTable />
         </div>
       </div>

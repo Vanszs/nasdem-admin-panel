@@ -1,5 +1,6 @@
+"use client";
 import { useState, useRef, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { usePathname } from "next/navigation";
 import {
   LayoutDashboard,
   FileText,
@@ -90,14 +91,7 @@ export function ModernSidebar({ isCollapsed = false, onToggle }: ModernSidebarPr
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const sidebarRef = useRef<HTMLDivElement>(null);
   
-  // Safely get location, fallback if not in router context
-  let currentPath = "/";
-  try {
-    const location = useLocation();
-    currentPath = location.pathname;
-  } catch {
-    // Not in router context, use default
-  }
+  const currentPath = usePathname() || "/";
 
   const isActive = (path: string) => currentPath === path;
   const isGroupActive = (subItems?: { url: string }[]) => 
@@ -135,7 +129,7 @@ export function ModernSidebar({ isCollapsed = false, onToggle }: ModernSidebarPr
   }, []);
 
   const getNavClassName = ({ isActive }: { isActive: boolean }) =>
-    `group relative flex items-center gap-3 px-4 py-3 mx-3 rounded-2xl font-medium transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden ${
+    `group relative flex items-center gap-3 px-4 py-3 mx-3 rounded-smooth font-medium transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden ${
       isActive 
         ? "text-white/85 bg-white/[0.12] text-white scale-[1.01] shadow-lg shadow-white/10"
         : "text-white/85 hover:bg-white/[0.12] hover:text-white hover:scale-[1.01] hover:shadow-lg hover:shadow-white/10"
@@ -158,7 +152,7 @@ export function ModernSidebar({ isCollapsed = false, onToggle }: ModernSidebarPr
       <div className="relative p-6 border-b border-white/10">
         <div className="relative flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <div className="relative w-12 h-12 bg-gradient-to-br from-brand-accent via-brand-accent to-brand-accent/80 rounded-2xl flex items-center justify-center shadow-2xl shadow-brand-accent/40">
+            <div className="relative w-12 h-12 bg-gradient-to-br from-brand-accent via-brand-accent to-brand-accent/80 rounded-smooth flex items-center justify-center shadow-2xl shadow-brand-accent/40">
               <Sparkles className="text-white w-6 h-6 z-10" />
             </div>
             {!isCollapsed && (
@@ -178,7 +172,7 @@ export function ModernSidebar({ isCollapsed = false, onToggle }: ModernSidebarPr
               variant="ghost"
               size="icon"
               onClick={onToggle}
-              className="text-white/80 hover:text-white hover:bg-white/10 h-10 w-10 rounded-xl transition-all duration-300 hover:scale-110"
+              className="text-white/80 hover:text-white hover:bg-white/10 h-10 w-10 rounded-smooth transition-all duration-300 hover:scale-110"
             >
               <div className="transition-transform duration-300">
                 {isCollapsed ? <Menu className="h-5 w-5" /> : <X className="h-5 w-5" />}
@@ -205,7 +199,7 @@ export function ModernSidebar({ isCollapsed = false, onToggle }: ModernSidebarPr
                     onClick={() => toggleGroup(item.title)}
                     onMouseEnter={() => setHoveredItem(item.title)}
                     onMouseLeave={() => setHoveredItem(null)}
-                    className={`w-full group relative flex items-center gap-3 px-4 py-3 mx-3 rounded-2xl font-medium transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden ${
+                    className={`w-full group relative flex items-center gap-3 px-4 py-3 mx-3 rounded-smooth font-medium transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden ${
                       isGroupActive(item.subItems)
                         ? "text-white/85 bg-white/[0.12] text-white scale-[1.01] shadow-lg shadow-white/10"
                         : "text-white/85 hover:bg-white/[0.12] hover:text-white hover:scale-[1.01]"
@@ -241,7 +235,7 @@ export function ModernSidebar({ isCollapsed = false, onToggle }: ModernSidebarPr
                           key={subItem.url}
                           to={subItem.url}
                           className={({ isActive }) =>
-                            `group relative flex items-center gap-3 px-6 py-3 mx-2 rounded-xl transition-all duration-300 ${
+                            `group relative flex items-center gap-3 px-6 py-3 mx-2 rounded-smooth transition-all duration-300 ${
                               isActive
                                 ? "text-white/85 bg-white/[0.12] text-white"
                                 : "text-white/80 hover:bg-white/10 hover:text-white"
@@ -304,7 +298,7 @@ export function ModernSidebar({ isCollapsed = false, onToggle }: ModernSidebarPr
 
       {/* Tooltip for collapsed state */}
       {isCollapsed && hoveredItem && (
-        <div className="fixed left-24 bg-gray-900 text-white px-3 py-2 rounded-lg shadow-xl z-50 pointer-events-none transition-all duration-200"
+        <div className="fixed left-24 bg-gray-900 text-white px-3 py-2 rounded-smooth shadow-xl z-50 pointer-events-none transition-all duration-200"
              style={{ 
                top: `${mousePos.y - 20}px`,
                opacity: hoveredItem ? 1 : 0,

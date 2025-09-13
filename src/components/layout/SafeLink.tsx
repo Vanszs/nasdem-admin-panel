@@ -1,10 +1,19 @@
-import { Link, LinkProps } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
 import { forwardRef } from "react";
 
-export const SafeLink = forwardRef<HTMLAnchorElement, LinkProps>(
-  ({ children, ...props }, ref) => {
+type SafeLinkProps = {
+  to: string;
+  children: React.ReactNode;
+  className?: string;
+  prefetch?: boolean;
+} & Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, "href">;
+
+export const SafeLink = forwardRef<HTMLAnchorElement, SafeLinkProps>(
+  ({ children, to, className, prefetch, ...props }, ref) => {
     return (
-      <Link ref={ref} {...props}>
+      <Link ref={ref} href={to} className={className} prefetch={prefetch} {...props}>
         {children}
       </Link>
     );

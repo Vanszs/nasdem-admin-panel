@@ -65,7 +65,7 @@ export function KPICard({
         <h3 className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors duration-300">
           {title}
         </h3>
-        <div className={`p-3 rounded-2xl border border-current/20 transition-all duration-500 group-hover:scale-110 ${colorClasses[color]}`}>
+        <div className={`p-3 rounded-smooth border border-current/20 transition-all duration-500 group-hover:scale-110 ${colorClasses[color]}`}>
           <Icon className="h-5 w-5 transition-transform duration-300" />
         </div>
       </CardHeader>

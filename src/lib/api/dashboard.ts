@@ -144,7 +144,7 @@ export const dashboardApi = {
     });
 
     const response = await fetch(
-      `${(import.meta as any).env?.VITE_API_BASE_URL || 'http://localhost:3001/api'}${API_ENDPOINTS.dashboard.export(type)}?${params}`,
+      `${(process.env.NEXT_PUBLIC_API_URL as string) || (import.meta as any).env?.VITE_API_URL || 'http://localhost:3001/api'}${API_ENDPOINTS.dashboard.export(type)}?${params}`,
       {
         method: 'GET',
         headers: {
