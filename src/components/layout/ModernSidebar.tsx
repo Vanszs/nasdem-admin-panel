@@ -17,7 +17,10 @@ import {
   Menu,
   X,
   Sparkles,
-  UserPlus
+  UserPlus,
+  Monitor,
+  BarChart3,
+  Globe
 } from "lucide-react";
 
 import { SafeNavLink } from "./SafeNavLink";
@@ -31,16 +34,15 @@ const menuItems = [
     badge: "Home",
   },
   {
-    title: "Berita",
-    url: "/news",
-    icon: FileText,
+    title: "CMS",
+    icon: Monitor,
+    isCollapsible: true,
     badge: "Content",
-  },
-  {
-    title: "Galeri",
-    url: "/gallery",
-    icon: Image,
-    badge: "Media",
+    subItems: [
+      { title: "Berita", url: "/news", icon: FileText, description: "Kelola berita dan artikel" },
+      { title: "Galeri", url: "/gallery", icon: Image, description: "Kelola foto dan media" },
+      { title: "Landing Page", url: "/landing", icon: Globe, description: "Kelola halaman utama" },
+    ],
   },
   {
     title: "Struktur",
@@ -55,28 +57,16 @@ const menuItems = [
     ],
   },
   {
-    title: "Daftar Anggota",
-    url: "/members",
+    title: "User",
+    url: "/user",
     icon: UserPlus,
-    badge: "Members",
+    badge: "Management",
   },
   {
-    title: "Landing Page",
-    url: "/landing",
-    icon: Home,
-    badge: "Web",
-  },
-  {
-    title: "Audit Log",
-    url: "/audit",
-    icon: Activity,
-    badge: "Monitor",
-  },
-  {
-    title: "Pengaturan",
-    url: "/settings",
-    icon: Settings,
-    badge: "Config",
+    title: "Statistik Pemilu",
+    url: "/statistik-pemilu",
+    icon: BarChart3,
+    badge: "Analytics",
   },
 ];
 
