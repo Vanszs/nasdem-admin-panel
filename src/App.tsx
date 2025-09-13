@@ -11,7 +11,7 @@ import { GalleryPage } from "./pages/gallery/GalleryPage";
 import { MediaUploadPage } from "./pages/gallery/MediaUploadPage";
 import { StructurePage } from "./pages/structure/StructurePage";
 import { MemberListPage } from "./pages/members/MemberListPage";
-import { LandingPageManagement } from "./pages/LandingPageManagement";
+import LandingPageManagement from "./pages/LandingPageManagement";
 
 const queryClient = new QueryClient();
 

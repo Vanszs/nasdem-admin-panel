@@ -23,7 +23,7 @@ export function NewsListPage() {
               </p>
             </div>
             <SafeLink to="/news/create">
-              <Button className="bg-brand-accent border-2 border-brand-accent/20 hover:border-brand-accent/40 focus-ring transition-all duration-300">
+              <Button className="bg-[#FF9C04] hover:bg-[#FF9C04]/90 text-white font-semibold border-2 border-[#FF9C04]/20 hover:border-[#FF9C04]/40 focus-ring transition-all duration-300 shadow-lg hover:shadow-xl">
                 <Plus className="mr-2 h-4 w-4" />
                 Tulis Berita Baru
               </Button>

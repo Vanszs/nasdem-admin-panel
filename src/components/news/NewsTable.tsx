@@ -117,11 +117,11 @@ const statusConfig = {
   },
   SCHEDULED: { 
     label: "Terjadwal", 
-    className: "bg-yellow-100 text-yellow-700 border-2 border-yellow-300 hover:bg-yellow-200 font-medium px-3 py-1.5 min-w-[80px] justify-center" 
+    className: "bg-[#FF9C04]/10 text-[#FF9C04] border-2 border-[#FF9C04]/30 hover:bg-[#FF9C04]/20 font-medium px-3 py-1.5 min-w-[80px] justify-center" 
   },
   PUBLISHED: { 
     label: "Published", 
-    className: "bg-green-100 text-green-700 border-2 border-green-300 hover:bg-green-200 font-medium px-3 py-1.5 min-w-[80px] justify-center" 
+    className: "bg-[#001B55]/10 text-[#001B55] border-2 border-[#001B55]/30 hover:bg-[#001B55]/20 font-medium px-3 py-1.5 min-w-[80px] justify-center" 
   },
   ARCHIVED: { 
     label: "Diarsip", 
@@ -259,7 +259,7 @@ export function NewsTable() {
                 <Button 
                   variant="ghost" 
                   size="sm" 
-                  className="h-auto p-2 font-medium text-foreground hover:text-primary hover:bg-primary/10 border-2 border-transparent hover:border-primary/20 rounded-lg transition-all duration-300"
+                  className="h-auto p-2 font-medium text-[#001B55] hover:text-[#FF9C04] hover:bg-[#FF9C04]/10 border-2 border-transparent hover:border-[#FF9C04]/20 rounded-lg transition-all duration-300"
                 >
                   Judul <SortAsc className="ml-1 h-3 w-3" />
                 </Button>
@@ -286,7 +286,7 @@ export function NewsTable() {
                   <div className="space-y-1">
                     <SafeLink 
                       to={`/news/${newsItem.id}`}
-                      className="font-medium hover:text-accent smooth-transition"
+                      className="font-medium hover:text-[#FF9C04] text-[#001B55] transition-colors duration-200"
                     >
                       {newsItem.title}
                     </SafeLink>
@@ -350,10 +350,10 @@ export function NewsTable() {
                     variant="ghost"
                     size="icon"
                     onClick={() => handlePin(newsItem)}
-                    className={`h-8 w-8 ${
+                    className={`h-8 w-8 transition-all duration-200 ${
                       newsItem.pinned 
-                        ? "text-accent bg-accent/10" 
-                        : "text-muted-foreground hover:text-accent"
+                        ? "text-[#FF9C04] bg-[#FF9C04]/10 hover:bg-[#FF9C04]/20" 
+                        : "text-muted-foreground hover:text-[#FF9C04] hover:bg-[#FF9C04]/10"
                     } focus-ring`}
                   >
                     <Pin className={`h-4 w-4 ${newsItem.pinned ? "fill-current" : ""}`} />
@@ -409,7 +409,7 @@ export function NewsTable() {
             </p>
             {!searchTerm && statusFilter === "all" && (
               <SafeLink to="/news/create">
-                <Button className="mt-4 bg-brand-accent">
+                <Button className="mt-4 bg-[#FF9C04] hover:bg-[#FF9C04]/90 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-200">
                   <Plus className="mr-2 h-4 w-4" />
                   Tulis Berita Pertama
                 </Button>
@@ -432,7 +432,7 @@ export function NewsTable() {
               size="sm"
               onClick={() => handlePageChange(currentPage - 1)}
               disabled={currentPage === 1}
-              className="border-2 border-gray-200 hover:border-gray-300"
+              className="border-2 border-gray-200 hover:border-[#FF9C04] hover:text-[#FF9C04] transition-colors duration-200"
             >
               <ChevronLeft className="h-4 w-4" />
               Sebelumnya
@@ -445,10 +445,10 @@ export function NewsTable() {
                   variant={page === currentPage ? "default" : "outline"}
                   size="sm"
                   onClick={() => handlePageChange(page)}
-                  className={`min-w-[40px] border-2 ${
+                  className={`min-w-[40px] border-2 transition-colors duration-200 ${
                     page === currentPage 
-                      ? 'bg-primary border-primary text-white' 
-                      : 'border-gray-200 hover:border-gray-300'
+                      ? 'bg-[#001B55] border-[#001B55] text-white hover:bg-[#001B55]/90' 
+                      : 'border-gray-200 hover:border-[#FF9C04] hover:text-[#FF9C04]'
                   }`}
                 >
                   {page}
@@ -461,7 +461,7 @@ export function NewsTable() {
               size="sm"
               onClick={() => handlePageChange(currentPage + 1)}
               disabled={currentPage === totalPages}
-              className="border-2 border-gray-200 hover:border-gray-300"
+              className="border-2 border-gray-200 hover:border-[#FF9C04] hover:text-[#FF9C04] transition-colors duration-200"
             >
               Selanjutnya
               <ChevronRight className="h-4 w-4" />
