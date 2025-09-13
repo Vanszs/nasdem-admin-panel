@@ -15,7 +15,8 @@ import {
   TreePine,
   Menu,
   X,
-  Sparkles
+  Sparkles,
+  UserPlus
 } from "lucide-react";
 
 import { SafeNavLink } from "./SafeNavLink";
@@ -51,6 +52,12 @@ const menuItems = [
       { title: "DPC", url: "/structure/dpc", icon: MapPin, description: "Dewan Pimpinan Cabang" },
       { title: "DPRT", url: "/structure/dprt", icon: TreePine, description: "Dewan Pimpinan Ranting" },
     ],
+  },
+  {
+    title: "Daftar Anggota",
+    url: "/members",
+    icon: UserPlus,
+    badge: "Members",
   },
   {
     title: "Landing Page",
