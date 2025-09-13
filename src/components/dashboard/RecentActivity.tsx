@@ -1,7 +1,6 @@
 import { formatDistanceToNow } from "date-fns";
 import { id } from "date-fns/locale";
 import { FileText, Image, Users, Pin, Archive, Clock, CheckCircle, AlertCircle } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
@@ -130,24 +129,12 @@ const getPriorityIndicator = (priority?: string) => {
 
 export function RecentActivity() {
   return (
-    <Card className="group relative overflow-hidden border-2 border-gray-200/80 hover:border-gray-300/90 shadow-md hover:shadow-xl transition-all duration-500 bg-white/90 backdrop-blur-sm">
-      {/* Enhanced Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/8 via-transparent to-accent/8 opacity-50 group-hover:opacity-70 transition-opacity duration-500" />
-      
-      <CardHeader className="relative pb-4 border-b border-gray-100/60">
-        <CardTitle className="text-xl font-bold text-foreground flex items-center gap-2">
-          <div className="w-2 h-6 bg-gradient-to-b from-primary to-accent rounded-full" />
-          Aktivitas Terbaru
-        </CardTitle>
-        <p className="text-sm text-muted-foreground">Timeline perubahan dan update sistem</p>
-      </CardHeader>
-      
-      <CardContent className="relative space-y-1">
-        {activities.map((activity, index) => {
-          const Icon = getActivityIcon(activity.type, activity.action);
-          const config = getActivityConfig(activity.action, activity.priority);
-          
-          return (
+    <div className="space-y-1">
+      {activities.map((activity, index) => {
+        const Icon = getActivityIcon(activity.type, activity.action);
+        const config = getActivityConfig(activity.action, activity.priority);
+        
+        return (
             <div key={activity.id} className={cn(
               "group/item relative overflow-hidden rounded-2xl p-4 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md cursor-pointer",
               "bg-gradient-to-r from-white/70 via-white/50 to-white/70",
@@ -226,10 +213,6 @@ export function RecentActivity() {
             Lihat semua aktivitas →
           </button>
         </div>
-      </CardContent>
-      
-      {/* Decorative Background Elements */}
-      <div className="absolute -top-8 -right-8 w-24 h-24 bg-gradient-to-br from-primary/10 to-accent/10 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-all duration-700" />
-    </Card>
-  );
-}
+      </div>
+    );
+  }
